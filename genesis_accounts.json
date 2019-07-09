@@ -1,0 +1,10 @@
+{"InitialAccounts":
+    {
+        "0x1":{"balance":10000,"nonce":0},
+    "0x7be017a967db77fd10ac7c891b3d6d946dea7e3e14756e2f0f9e09b9663f0d9c":{"balance":10000,"nonce":0},
+    "0x4d05cfede9928bcd225c008db8110cfeb1f01011e118bdb93f1bb14d2052c276":{"balance":10000,"nonce":0},
+    "0xdb58184012f26c405bff2d8866bf7ef2d1da7f0b391d1f1364f1d695929df617":{"balance":10000,"nonce":0},
+    "0x0dc90fe42d96e302ae122aa3437e320d792772aba8f459f80e18a45ae754112d":{"balance":10000,"nonce":0},
+    "0x891da146767aa80e3ce3ef826ef675c1bb32e9021844193a163fac231513149a":{"balance":10000,"nonce":0},
+    "0x39a27e846f7e9783cd8fcae0f94abe7ba1428df096e13e903ef5b9df85d520e1":{"balance":10000,"nonce":0}}
+}
