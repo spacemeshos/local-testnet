@@ -11,6 +11,7 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 https://git-scm.com/
 #### go lang v1.11+
 https://golang.org/
+https://github.com/moovweb/gvm
 
 #### python3
 https://www.python.org/downloads/
@@ -27,9 +28,12 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-o
 1. Clone this repo to your computer.
 2. From the shell run:
 ```
-[setup_script_command]
+setup.sh
 ```
 
 ## Working with the Localnet
 Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).
 
+## Troubleshooting
+docker cannot run without sudo: please refer to the guide mentioned above
+fluentd container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
