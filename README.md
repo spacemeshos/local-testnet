@@ -31,12 +31,17 @@ pip install virtualenv
 ## Building from Source Code
 
 1. Clone this repo to your computer
+
 2. From the shell run:
 ```
 setup.sh
 ``` 
+
 3. Create virtual environment for running the testnet
-`virtualenv --python=python3 venv`
+```
+virtualenv --python=python3 venv
+```
+
 4. Activate virtual env and install requirements
 ```
 source venv/bin/activate
@@ -57,11 +62,11 @@ Logs are available in the `logs` directory.
 cd ~/go/src/github.com/spacemeshos/CLIWallet
 ```
 
-2. run 
+2. Run 
 ```
 ./CLIWallet
 ```
-3. You should see a list of accounts. Choose one. e.g. enter `anton`.
+3. You should see a list of accounts. Choose one. e.g. enter `anton`
 4. Enter `account`  to view anton's account balance
 5. Enter `transfer coins` to transfer coin to another account and follow the on-screen instructions
 
@@ -69,8 +74,6 @@ cd ~/go/src/github.com/spacemeshos/CLIWallet
 Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).
 
 ## Troubleshooting
-docker cannot run without sudo: please refer to the guide mentioned above
-
-fluentd container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
-
-nodes stop producing blocks after 30 min - this is an issue with dockers DNS resolving, adding custom dns address to docker config should solve this problem
+- Docker cannot run without sudo: please refer to [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+- Fluentd container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
+- Nodes stop producing blocks after 30 min - this is an issue with dockers DNS resolving, adding custom dns address to docker config should solve this problem
