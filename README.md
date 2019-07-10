@@ -13,9 +13,10 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 - virtualenv + pip https://docs.python.org/3/library/venv.html
 - Docker. For ubuntu use [following instructions](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download from https://www.docker.com/ 
 
-### OS X Prerequisites setup with brew
+### OS X setup
 
-- Install docker from ttps://www.docker.com/ 
+- Install [docker](https://www.docker.com/)
+- Install [brew](https://brew.sh/)
 - Run the following from the terminal:
 ```
 brew install git
