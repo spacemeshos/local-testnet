@@ -29,7 +29,24 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-o
 2. From the shell run:
 ```
 setup.sh
+``` 
+3. Create virtual environment for running the testnet
+`virtuaenv --python=python3 venv`
+4. Activate virtual env and install requirements
 ```
+source venv/bin/activate
+pip install -r requirements.txt
+```
+5. Run local testnet
+`python testnet.py`
+6. viewing logs - logs should be in `logs` directory
+### running transactions
+1. go to CLIWallet dir
+`cd ~/go/src/github.com/spacemeshos/CLIWallet`
+2. run ./CLIWallet
+3. Choose account
+4. use `account` keyword to query account funds
+5. use `transfer funds` keyword to transfer funds to another account and follow instructions
 
 ## Working with the Localnet
 Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).
