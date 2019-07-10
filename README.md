@@ -10,7 +10,7 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 
 ## Prerequisites
 - [git](https://git-scm.com/)
-- [go lang v1.11+](https://golang.org/ https://github.com/moovweb/gvm)
+- [go lang v1.11+](https://golang.org/)
 - [python3](https://www.python.org/downloads/)
 - [virtualenv + pip](https://docs.python.org/3/library/venv.html)
 - Docker. [Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download from https://www.docker.com/ 
