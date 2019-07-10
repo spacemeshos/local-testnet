@@ -31,7 +31,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-o
 setup.sh
 ``` 
 3. Create virtual environment for running the testnet
-`virtuaenv --python=python3 venv`
+`virtualenv --python=python3 venv`
 4. Activate virtual env and install requirements
 ```
 source venv/bin/activate
