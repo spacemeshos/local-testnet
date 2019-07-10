@@ -43,7 +43,7 @@ pip install -r requirements.txt
 ### running transactions
 1. go to CLIWallet dir
 `cd ~/go/src/github.com/spacemeshos/CLIWallet`
-2. run ./CLIWallet
+2. run `./CLIWallet`
 3. Choose account
 4. use `account` keyword to query account funds
 5. use `transfer funds` keyword to transfer funds to another account and follow instructions
