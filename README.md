@@ -11,6 +11,7 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 https://git-scm.com/
 #### go lang v1.11+
 https://golang.org/
+https://github.com/moovweb/gvm
 
 #### python3
 https://www.python.org/downloads/
@@ -27,9 +28,29 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-o
 1. Clone this repo to your computer.
 2. From the shell run:
 ```
-[setup_script_command]
+setup.sh
+``` 
+3. Create virtual environment for running the testnet
+`virtualenv --python=python3 venv`
+4. Activate virtual env and install requirements
 ```
+source venv/bin/activate
+pip install -r requirements.txt
+```
+5. Run local testnet
+`python testnet.py`
+6. viewing logs - logs should be in `logs` directory
+### running transactions
+1. go to CLIWallet dir
+`cd ~/go/src/github.com/spacemeshos/CLIWallet`
+2. run `./CLIWallet`
+3. Choose account
+4. use `account` keyword to query account funds
+5. use `transfer funds` keyword to transfer funds to another account and follow instructions
 
 ## Working with the Localnet
 Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).
 
+## Troubleshooting
+docker cannot run without sudo: please refer to the guide mentioned above
+fluentd container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
