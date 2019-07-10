@@ -23,6 +23,18 @@ https://docs.python.org/3/library/venv.html
 for ubuntu use following instructions:
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 
+## OS X Setup
+Using brew:
+
+```
+brew install git
+brew install go
+brew install python
+brew install docker
+sudo easy_install pip
+pip install virtualenv
+```
+
 ## Building & Running
 
 1. Clone this repo to your computer.
