@@ -7,25 +7,16 @@ It contains a setup script that clones and builds all the relevant repositories 
 To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](https://spacemesh.io) .
 
 ## Prerequisites
-#### git 
-https://git-scm.com/
-#### go lang v1.11+
-https://golang.org/
-https://github.com/moovweb/gvm
+- git  https://git-scm.com/
+- go lang v1.11+ https://golang.org/ https://github.com/moovweb/gvm
+- python3 https://www.python.org/downloads/
+- virtualenv + pip https://docs.python.org/3/library/venv.html
+- Docker. For ubuntu use [following instructions](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download from https://www.docker.com/ 
 
-#### python3
-https://www.python.org/downloads/
+### OS X Prerequisites setup with brew
 
-#### virtualenv + pip
-https://docs.python.org/3/library/venv.html
-
-#### docker
-for ubuntu use following instructions:
-https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
-
-## OS X Setup
-Using brew:
-
+- Install docker from ttps://www.docker.com/ 
+- Run the following from the terminal:
 ```
 brew install git
 brew install go
@@ -34,10 +25,9 @@ brew install docker
 sudo easy_install pip
 pip install virtualenv
 ```
-
 ## Building & Running
 
-1. Clone this repo to your computer.
+1. Clone this repo to your computer
 2. From the shell run:
 ```
 setup.sh
