@@ -52,13 +52,21 @@ pip install -r requirements.txt
 5. Run local testnet
 `python testnet.py`
 6. viewing logs - logs should be in `logs` directory
+
 ### running transactions
+
 1. go to CLIWallet dir
-`cd ~/go/src/github.com/spacemeshos/CLIWallet`
-2. run `./CLIWallet`
-3. Choose account
-4. use `account` keyword to query account funds
-5. use `transfer funds` keyword to transfer funds to another account and follow instructions
+```
+cd ~/go/src/github.com/spacemeshos/CLIWallet
+```
+
+2. run 
+```
+./CLIWallet
+```
+3. You should see a list of accounts. Choose one. e.g. enter `anton`.
+4. Enter `account`  to view anton's account balance
+5. Enter `transfer coins` to transfer coin to another account and follow the on-screen instructions
 
 ## Working with the Localnet
 Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).
