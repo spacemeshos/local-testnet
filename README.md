@@ -6,6 +6,8 @@ This repo contains the framework for running a 6 nodes Spacemesh testnet locally
 It contains a setup script that clones and builds all the relevant repositories required for running a localnet.
 To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](https://spacemesh.io) .
 
+<img src="https://spacemesh.io/content/images/2019/07/localnet_grab.jpg">
+
 ## Prerequisites
 - git  https://git-scm.com/
 - go lang v1.11+ https://golang.org/ https://github.com/moovweb/gvm
