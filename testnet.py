@@ -191,8 +191,8 @@ randcon = 4
 client = docker.from_env()
 advclient = docker.APIClient(base_url='unix://var/run/docker.sock')
 
-poet_image = "spacemeshos/poet:develop"
-node_image = "spacemeshos/go-spacemesh-dev:mem_pools_concurrency"
+poet_image = "poet:develop"
+node_image = "go-spacemesh:develop"
 fluentd_image = "fluent/fluentd:latest"
 
 # Start a network with size `netsize` boot each client and add to the list

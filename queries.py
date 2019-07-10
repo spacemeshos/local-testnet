@@ -101,7 +101,6 @@ def parse_reward(msg):
 def post_proof(msg):
     m = re.findall(r'(?<=\b:\s)(\w+)', msg["M"])
     id = re.split(r'\.', msg["N"])[0]
-    print(m)
     print(bcolors.ORANGE + "commitment finished for node: %s size: %s (bytes)" % (id, m[2]) + bcolors.ENDC)
 
 
