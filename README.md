@@ -28,7 +28,7 @@ brew install docker
 sudo easy_install pip
 pip install virtualenv
 ```
-## Building & Running
+## Building from Source Code
 
 1. Clone this repo to your computer
 2. From the shell run:
@@ -42,13 +42,17 @@ setup.sh
 source venv/bin/activate
 pip install -r requirements.txt
 ```
-5. Run local testnet
-`python testnet.py`
-6. viewing logs - logs should be in `logs` directory
 
-### running transactions
+## Running
 
-1. go to CLIWallet dir
+```
+python testnet.py
+```
+Logs are available in the `logs` directory.
+
+### Executing Transactions
+
+1. Navigate to CLIWallet dir
 ```
 cd ~/go/src/github.com/spacemeshos/CLIWallet
 ```
