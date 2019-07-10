@@ -53,4 +53,7 @@ Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/l
 
 ## Troubleshooting
 docker cannot run without sudo: please refer to the guide mentioned above
+
 fluentd container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
+
+nodes dtop producing blocks after 30 min - this is an issue with dockers DNS resolving, adding custom dns address to docker config should solve this problem
