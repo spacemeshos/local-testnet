@@ -81,7 +81,7 @@ def create_nodes(clients, boot_ip, bootID, poet_ip, network_name):
                          "genesis-time": GENESIS_TIME.isoformat('T', 'seconds')})
 
     print("running clients with args: " + tools.dict_to_args(params.client_params))
-
+    baseport = 9190
     for name, pubkey in clients.items():
         tools.update_dict(params.client_params,
                           **{"coinbase": pubkey})
@@ -93,14 +93,15 @@ def create_nodes(clients, boot_ip, bootID, poet_ip, network_name):
                                          os.path.abspath(GENESIS_ACCOUNTS): {'bind': params.client_params["genesis-conf"],
                                                                              'mode': 'rw'}},
                                      detach=True,
-                                     ports={"9090": None},
+                                     ports={"9090": baseport},
                                      network=network_name,
                                      name=name,
                                      command=tools.dict_to_args(params.client_params))
         # client.networks.get(network_name).connect(node)
         containers.append({"cont": node})
         # idxes[node.name] = i
-        print("client created " + node.name)
+        print(tools.bcolors.OKYELLOW + "client created " + node.name + " connect wallet to 127.0.0.1:" + str(baseport) + " to access this node" + tools.bcolors.ENDC)
+        baseport += 1
     print("finished creating clients")
 
 

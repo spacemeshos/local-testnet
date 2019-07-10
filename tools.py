@@ -11,6 +11,7 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+    ORANGE = '\033[33m'
 
 def getRPCPort(advclient, cont):
     inspect = advclient.inspect_container(cont.name)
