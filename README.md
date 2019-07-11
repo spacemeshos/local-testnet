@@ -23,7 +23,7 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 ```
 brew install git
 brew install go
-brew install python
+brew install python3
 brew install docker
 sudo easy_install pip
 pip install virtualenv
@@ -32,18 +32,20 @@ pip install virtualenv
 
 1. Clone this repo to your computer
 
-2. From the shell run:
+2. Setup [git for automation](https://help.github.com/en/articles/git-automation-with-oauth-tokens)
+
+3. From the shell run:
 ```
 sudo chmod u+x setup.sh
 ./setup.sh
 ``` 
 
-3. Create virtual environment for running the testnet
+4. Create virtual environment for running the testnet
 ```
 virtualenv --python=python3 venv
 ```
 
-4. Activate virtual env and install requirements
+5. Activate virtual env and install requirements
 ```
 source venv/bin/activate
 pip install -r requirements.txt
