@@ -9,7 +9,7 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 <img src="https://spacemesh.io/content/images/2019/07/localnet_grab.jpg">
 
 ## Prerequisites
-- OS X - Full Linux support is coming soon.
+- OS X - Full Linux and Windows support is coming soon. We still have some issues to resolve for these platforms.
 - [git](https://git-scm.com/)
 - [go lang v1.11+](https://golang.org/)
 - [python3](https://www.python.org/downloads/)
