@@ -1,6 +1,6 @@
 #! /bin/sh -x
 
-GITHUB=https://github.com
+GITHUB=git://github.com
 SPACEMESHOS=$GITHUB/spacemeshos
 GO_GITHUB=~/go/src/github.com/spacemeshos
 
