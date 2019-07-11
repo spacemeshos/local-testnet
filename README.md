@@ -32,7 +32,7 @@ pip install virtualenv
 
 1. Clone this repo to your computer
 
-2. Setup [git for automation](https://help.github.com/en/articles/git-automation-with-oauth-tokens)
+2. Setup [git access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
 
 3. From the shell run:
 ```
