@@ -88,3 +88,11 @@ Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/l
 - Docker cannot run without sudo: please refer to [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
 - Fluentd container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
 - Nodes stop producing blocks after 30 min - this is an issue with dockers DNS resolving, adding custom dns address to docker config should solve this problem
+
+## Windows Setup Tips
+- You need to use Windows 10 Pro - Windows 10 Home is not supported because it doesn't support Docker Desktop.
+- You need to enable virtualization to run Docker desktop in Windows 10 Pro.
+- Use the git bash console to run things and not the command line.
+- Use these guids to setup python, pip and and virtual env: 
+  - to be added
+
