@@ -57,7 +57,7 @@ Logs are available in the `logs` directory.
 
 ### Executing Transactions
 
-1. Navigate to CLIWallet dir
+1. Navigate to CLIWallet directory in your go `src` directory.
 ```
 cd ~/go/src/github.com/spacemeshos/CLIWallet
 ```
