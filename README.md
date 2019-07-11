@@ -51,6 +51,8 @@ pip install -r requirements.txt
 
 ## Running
 
+> Note that the localnet includes an instance of the POET service which is a CPU intensive process. For public testnets and the mainent, you will not need to run a local POET service instance only 1 full node instance. You need a relatively strong dev box such as a modern MBP to run the localnet.
+
 1. Activate virtual env if it is not already activated:
 ```
 source venv/bin/activate
@@ -61,7 +63,7 @@ source venv/bin/activate
 python testnet.py
 ```
 
-Logs are available in the `logs` directory.
+The testnet logs are available in the `Logs` directory.
 
 ### Executing Transactions
 
