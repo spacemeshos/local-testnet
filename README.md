@@ -9,6 +9,7 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 <img src="https://spacemesh.io/content/images/2019/07/localnet_grab.jpg">
 
 ## Prerequisites
+- OS X - Full Linux support is coming soon.
 - [git](https://git-scm.com/)
 - [go lang v1.11+](https://golang.org/)
 - [python3](https://www.python.org/downloads/)
@@ -16,7 +17,6 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 - Docker. For Ubuntu follow [this nice guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download from https://www.docker.com/ 
 
 ### OS X setup
-
 - Install [docker](https://www.docker.com/)
 - Install [brew](https://brew.sh/)
 - Run the following from the terminal:
@@ -56,7 +56,7 @@ pip install -r requirements.txt
 source venv/bin/activate
 ```
 
-2. Hack away:
+2. Let it rip:
 ```
 python testnet.py
 ```
