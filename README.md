@@ -13,7 +13,7 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 - [go lang v1.11+](https://golang.org/)
 - [python3](https://www.python.org/downloads/)
 - [virtualenv + pip](https://docs.python.org/3/library/venv.html)
-- Docker. [Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download from https://www.docker.com/ 
+- Docker. For Ubuntu follow [this nice guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download from https://www.docker.com/ 
 
 ### OS X setup
 
@@ -34,7 +34,8 @@ pip install virtualenv
 
 2. From the shell run:
 ```
-setup.sh
+sudo chmod u+x setup.sh
+./setup.sh
 ``` 
 
 3. Create virtual environment for running the testnet
