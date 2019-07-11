@@ -2,7 +2,7 @@
   
 # Spacemesh Local Testnet (Localnet)
 
-This repo contains the framework for running a 6 nodes Spacemesh testnet locally on one computer. 
+This repo contains the framework for running a 6 node Spacemesh testnet locally on one computer. 
 It contains a setup script that clones and builds all the relevant repositories required for running a localnet.
 To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](https://spacemesh.io) .
 
