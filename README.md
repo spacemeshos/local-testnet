@@ -32,20 +32,18 @@ pip install virtualenv
 
 1. Clone this repo to your computer
 
-2. Setup [git access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
-
-3. From the shell run:
+2. From the shell run:
 ```
 sudo chmod u+x setup.sh
 ./setup.sh
 ``` 
 
-4. Create virtual environment for running the testnet
+3. Create virtual environment for running the testnet
 ```
 virtualenv --python=python3 venv
 ```
 
-5. Activate virtual env and install requirements
+4. Activate virtual env and install requirements
 ```
 source venv/bin/activate
 pip install -r requirements.txt
