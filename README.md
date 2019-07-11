@@ -51,9 +51,16 @@ pip install -r requirements.txt
 
 ## Running
 
+1. Activate virtual env if it is not already activated:
+```
+source venv/bin/activate
+```
+
+2. Hack away:
 ```
 python testnet.py
 ```
+
 Logs are available in the `logs` directory.
 
 ### Executing Transactions
