@@ -89,7 +89,7 @@ Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/l
 - Fluentd container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
 - Nodes stop producing blocks after 30 min - this is an issue with dockers DNS resolving, adding custom dns address to docker config should solve this problem
 
-## Windows Setup Tips
+## Windows Setup Tips (WIP)
 - You need to use Windows 10 Pro - Windows 10 Home is not supported because it doesn't support Docker Desktop.
 - You need to enable virtualization to run Docker desktop in Windows 10 Pro.
 - Use the git bash console to run things and not the command line.
