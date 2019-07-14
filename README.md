@@ -1,8 +1,8 @@
 <h1 align="center"><a href="https://spacemesh.io"><img width="400" src="https://spacemesh.io/content/images/2019/05/black_logo_hp.png" alt="Spacemesh logo" /></a><p align="center">A programmable Cryptocurrency</p></h1>
-  
+
 # Spacemesh Local Testnet (Localnet)
 
-This repo contains the framework for running a 6 node Spacemesh testnet locally on one computer. 
+This repo contains the framework for running a 6 node Spacemesh testnet locally on one computer.
 It contains a setup script that clones and builds all the relevant repositories required for running a localnet.
 To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](https://spacemesh.io) .
 
@@ -42,7 +42,7 @@ git clone https://github.com/spacemeshos/local-testnet.git
 ```
 sudo chmod u+x setup.sh
 ./setup.sh
-``` 
+```
 
 3. Create virtual environment for running the testnet
 ```
@@ -79,7 +79,7 @@ The testnet logs are available in the `Logs` directory.
 cd $GOPATH/src/github.com/spacemeshos/CLIWallet
 ```
 
-2. Run 
+2. Run
 ```
 ./CLIWallet
 ```
@@ -92,14 +92,14 @@ Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/l
 
 ## Troubleshooting
 - Docker cannot run without sudo: please refer to [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
-- Fluentd container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
+- Container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
 - Nodes stop producing blocks after 30 min - this is an issue with dockers DNS resolving, adding custom dns address to docker config should solve this problem
 
 ## Windows Setup Tips (WIP)
-- You need to use Windows 10 Pro - Windows 10 Home is not supported because it doesn't support Docker Desktop.
+- You need to use Win 10 Pro - Win 10 Home is not supported because it doesn't support Docker Desktop.
 - You need to enable virtualization to run Docker desktop in Windows 10 Pro.
 - Use the git bash console to run things and not the command line.
-- Use these guids to setup python, pip and and virtual env: 
+- Use these guides to setup python, pip and and virtual env: 
   - to be added
 
 ## Linux Setup Tips
@@ -107,5 +107,3 @@ Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/l
 
 ## Questions, Comments, Feedback?
 - Spacemesh [dev gitter channel](https://gitter.im/spacemesh-os/Lobby)
-
-
