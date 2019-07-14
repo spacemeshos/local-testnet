@@ -9,16 +9,17 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 <img src="https://spacemesh.io/content/images/2019/07/localnet_grab.jpg">
 
 ## Prerequisites
-- OS X - Full Linux and Windows support is coming soon. We still have some issues to resolve for these platforms.
+- OS X or Linux. Windows 10 Pro support is being tested.
 - [git](https://git-scm.com/)
 - [go lang v1.11+](https://golang.org/)
 - [python3](https://www.python.org/downloads/)
 - [virtualenv + pip](https://docs.python.org/3/library/venv.html)
-- Docker. [Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download from https://hub.docker.com/editions/community/docker-ce-desktop-mac
+- Docker. Please read this guide for [Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download and install Docker Desktop from https://hub.docker.com/editions/community/docker-ce-desktop-mac
 
 ### OS X setup
-- Install [docker](https://www.docker.com/)
+- Install [docker desktop](https://www.docker.com/)
 - Install [brew](https://brew.sh/)
+
 - Run the following from the terminal:
 ```
 brew install git
@@ -28,7 +29,9 @@ brew install docker
 sudo easy_install pip
 pip install virtualenv
 ```
+
 ## Building from Source Code
+The local testnet is 100% built from source code and doesn't use any prepackaged binaries.
 
 1. Clone this repo to your computer
 ```
@@ -56,7 +59,7 @@ pip install -r requirements.txt
 
 > Note that the localnet includes an instance of the POET service which is a CPU intensive process. For public testnets and the mainent, you will not need to run a local POET service instance only 1 full node instance. You need a relatively strong dev box such as a modern MBP to run the localnet.
 
-1. Activate virtual env if it is not already activated:
+1. Activate virtual env if you are not already in a virtual env session:
 ```
 source venv/bin/activate
 ```
@@ -98,4 +101,8 @@ Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/l
 - Use the git bash console to run things and not the command line.
 - Use these guids to setup python, pip and and virtual env: 
   - to be added
+
+## Linux Setup Tips
+- Follow the instructions in [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04) to setup on Ubuntu
+
 
