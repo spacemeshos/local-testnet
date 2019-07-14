@@ -105,7 +105,7 @@ Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/l
 ## Linux Setup Tips
 - Follow the instructions in [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04) to setup on Ubuntu
 
-## Questions, Comments Feedback?
+## Questions, Comments, Feedback?
 - Spacemesh [dev gitter channel](https://gitter.im/spacemesh-os/Lobby)
 
 
