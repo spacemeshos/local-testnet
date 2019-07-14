@@ -31,6 +31,9 @@ pip install virtualenv
 ## Building from Source Code
 
 1. Clone this repo to your computer
+```
+git clone https://github.com/spacemeshos/local-testnet.git
+```
 
 2. From the shell run:
 ```
