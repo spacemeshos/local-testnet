@@ -79,31 +79,33 @@ The testnet logs are available in the `Logs` directory.
 cd $GOPATH/src/github.com/spacemeshos/CLIWallet
 ```
 
-2. Run
+2. Run the wallet
 ```
 ./CLIWallet
 ```
 3. You should see a list of accounts. Choose one. e.g. enter `anton`
-4. Enter `account`  to view anton's account balance
+4. Enter `account`  to view Anton's account balance
 5. Enter `transfer coins` to transfer coin to another account and follow the on-screen instructions
 
 ## Working with the Localnet
-Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).
+- Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).
 
 ## Troubleshooting
 - Docker cannot run without sudo: please refer to [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
 - Container does not boot: make sure `logs` dir exists and has `{user}` rw permissions
 - Nodes stop producing blocks after 30 min - this is an issue with dockers DNS resolving, adding custom dns address to docker config should solve this problem
 
+## Linux Setup Tips
+- Follow the instructions in [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04) to setup Docker desktop on Ubuntu
+
+## Questions, Comments, Feedback?
+- Spacemesh [dev gitter channel](https://gitter.im/spacemesh-os/Lobby)
+
+---
+
 ## Windows Setup Tips (WIP)
 - You need to use Win 10 Pro - Win 10 Home is not supported because it doesn't support Docker Desktop.
 - You need to enable virtualization to run Docker desktop in Windows 10 Pro.
 - Use the git bash console to run things and not the command line.
-- Use these guides to setup python, pip and and virtual env: 
+- Use these guides to setup python, pip and and virtual env:
   - to be added
-
-## Linux Setup Tips
-- Follow the instructions in [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04) to setup on Ubuntu
-
-## Questions, Comments, Feedback?
-- Spacemesh [dev gitter channel](https://gitter.im/spacemesh-os/Lobby)
