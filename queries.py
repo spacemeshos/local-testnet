@@ -117,7 +117,7 @@ events = {"I've created a block in layer": block_created,
           "atx published": parse_atx,
           "transaction processed": parse_transactions,
           "GRPC SubmitTransaction to address": parse_transaction_recv,
-          # "reward applied for account": parse_rewards,
+          "reward applied for account": parse_rewards,
           "fees reward:": parse_reward,
           "finished PoST initialization": post_proof}
 
