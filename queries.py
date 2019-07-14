@@ -47,9 +47,9 @@ def released_tick(msg):
 def print_layer_stats(layer):
     l = str(layer - 1)
     total_blocks = sum([len(node2blocks[x]["layers"][l]) for x in layer_miners[l]])
-    print(bcolors.HEADER + "layer %s ended, %s miners created %s blocks" % (layer - 1, len(layer_miners[l]), total_blocks) + bcolors.ENDC)
+    print(bcolors.HEADER + "Layer %s ended, %s miners created %s blocks" % (layer - 1, len(layer_miners[l]), total_blocks) + bcolors.ENDC)
     if layer % layers_per_epoch == 0:
-        print(bcolors.OKBLUE + "an epoch has finished, atxs published in this epoch: %s" %
+        print(bcolors.OKBLUE + "An epoch has finished, atxs published in this epoch: %s" %
               len(epoch_atxs[str(int(layer/layers_per_epoch) -1)]) + bcolors.ENDC)
 
 
@@ -68,16 +68,16 @@ def parse_transactions(msg):
     # print(tx_id)
     transactions[tx_id].append(m)
     if len(transactions[tx_id]) == num_of_instances:
-        print(bcolors.OKGREEN + "confirmed tx: orig: %s dest: %s amount %s nonce: %s" % (m[0], m[1], m[2], m[3]) + bcolors.ENDC)
+        print(bcolors.OKGREEN + "Confirmed tx: orig: %s dest: %s amount %s nonce: %s" % (m[0], m[1], m[2], m[3]) + bcolors.ENDC)
 
 
 def parse_transaction_recv(msg):
     m = re.findall(r'(?<=\b:\s)(\w+)', msg["M"])
-    print(bcolors.OKYELLOW + "tx received by node, dst %s amount %s" % (m[0], m[2]) + bcolors.ENDC)
+    print(bcolors.OKYELLOW + "Tx received by node, dst %s amount %s" % (m[0], m[2]) + bcolors.ENDC)
 
 
 def app_started(msg):
-    print(bcolors.OKGREEN + "App started in %s at %s" % (msg["T"], msg["container_name"]) + bcolors.ENDC)
+    print(bcolors.OKGREEN + "App started in %s at %s 🎉" % (msg["T"], msg["container_name"]) + bcolors.ENDC)
 
 
 def parse_rewards(msg):
@@ -86,7 +86,7 @@ def parse_rewards(msg):
     rewards[reward].append(m)
     # print(m, " ", len(rewards[reward]))
     if len(rewards[reward]) % num_of_instances == 0:
-        print(bcolors.OKGREEN + "applied reward for node %s, reward: %s ⚒" % (m[0], m[1]) + bcolors.ENDC)
+        print(bcolors.OKGREEN + "Applied reward for node %s, reward: %s Spacemesh Coins (SMC) 🏅" % (m[0], m[1]) + bcolors.ENDC)
 
 
 def parse_reward(msg):
@@ -95,13 +95,13 @@ def parse_reward(msg):
     rewards[reward].append(m)
     # print(m, " ", len(rewards[reward]))
     if len(rewards[reward]) % num_of_instances == 0:
-        print(bcolors.OKGREEN + "applied reward for nodes, total reward: %s ⚒" % (m[0]) + bcolors.ENDC)
+        print(bcolors.OKGREEN + "Applied reward for nodes, total reward: %s Spacemesh Coins (SMC)🏅" % (m[0]) + bcolors.ENDC)
 
 
 def post_proof(msg):
     m = re.findall(r'(?<=\b:\s)(\w+)', msg["M"])
     id = re.split(r'\.', msg["N"])[0]
-    print(bcolors.ORANGE + "commitment finished for node: %s size: %s (bytes) 💾⏰💪" % (id, m[2]) + bcolors.ENDC)
+    print(bcolors.ORANGE + "Commitment finished for node: %s size: %s (bytes) 💾⏰💪" % (id, m[2]) + bcolors.ENDC)
 
 
 # node added event

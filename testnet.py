@@ -100,9 +100,9 @@ def create_nodes(clients, boot_ip, bootID, poet_ip, network_name):
         # client.networks.get(network_name).connect(node)
         containers.append({"cont": node})
         # idxes[node.name] = i
-        print(tools.bcolors.OKYELLOW + "client created " + node.name + " connect wallet to 127.0.0.1:" + str(baseport) + " to access this node" + tools.bcolors.ENDC)
+        print(tools.bcolors.OKYELLOW + "Client created " + node.name + " connect wallet to 127.0.0.1:" + str(baseport) + " to access this node" + tools.bcolors.ENDC)
         baseport += 1
-    print("finished creating clients")
+    print("Finished creating clients")
 
 
 def load_fluentd(network_name):
@@ -144,7 +144,7 @@ def runMultiple(func, afterfunc):
     for res in as_completed(futures):
         if afterfunc is not None:
             if isinstance(afterfunc, list):
-                # a list of function    
+                # a list of function
                 for f in afterfunc:
                     f(res.result())
             elif callable(afterfunc):
@@ -228,7 +228,7 @@ try:
     print("Bootnode is at - " + bootstrap.name + ": " + bootIP + ":7513/" + bootID)
 
     create_nodes(params.genesis_accounts, bootIP, bootID, POET_IP, NETWORK_NAME)
-    print("Spinned up " + str(netsize) + " more instances booting from bootnode")
+    print("Started " + str(netsize) + " more instances booting from bootnode")
 
     tools.parse_logs(fluentd, queries.events)
 except KeyboardInterrupt:
