@@ -102,8 +102,13 @@ def cleanUp(contlist):
         cont = i
         if isinstance(i, dict):
             cont = cont["cont"]
-        cont.kill()
-        cont.remove()
+            try:
+                cont.kill()
+            except:
+                print("cannot remove cont")
+            finally:
+                cont.remove()
+
         # update the bar
         sys.stdout.write("-")
         sys.stdout.flush()
