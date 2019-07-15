@@ -59,7 +59,7 @@ pip install -r requirements.txt
 
 ## Running
 
-> Note that the localnet includes an instance of the POET service which is a CPU intensive process. For public testnets and the mainent, you will not need to run a local POET service instance only 1 full node instance. You need a relatively strong dev box such as a modern MBP to run the localnet.
+> Note that the localnet includes an instance of the POET service which is a CPU intensive process. For public testnets and the mainnet, you will not need to run a local POET service instance only 1 full node instance. You need a relatively strong dev box such as a modern MBP to run the localnet.
 
 1. Activate virtual env if you are not already in a virtual env session:
 ```
