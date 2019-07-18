@@ -10,7 +10,8 @@ To learn more about the Spacemesh cryptocurrency visit [https://spacemesh.io](ht
 
 > Warning: The local testnet is an experimental alpha software in active development. It is built for developers who are comfortable with the command line, Docker, and dev env setup. You also need a strong modern dev computer to run it such as a Macbook Pro or a strong modern dev desktop computer. That said, we have tested it to work on all supported platforms and most of the issues we see are env setup.
 
-<p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IZvmzm8MzU8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<div align="center"><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IZvmzm8MzU8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
 
 ## Prerequisites
 - OS X or Linux. Windows 10 Pro support is being tested.
