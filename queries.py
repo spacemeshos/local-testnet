@@ -35,8 +35,8 @@ def block_created(msg):
 
 
 def released_tick(msg):
-    m = re.findall(r'\d+', msg["M"])
-    layer = m[0]
+    #m = re.findall(r'\d+', msg["M"])
+    layer = msg["layer_id"]
     layers[layer] += 1
     # print("got tick %s %s, total: %s" % (layer, msg, layers[layer]))
     if layers[layer] == num_of_instances:
@@ -56,8 +56,8 @@ def print_layer_stats(layer):
 def parse_atx(msg):
     # based on log: atx published! id: %v, prevATXID: %v, posATXID: %v, layer: %v, published in epoch: %v, active set: %v miner: %v view %v
     nid = re.split(r'\.', msg["N"][0])
-    m = re.findall(r'(?<=\b:\s)(\w+)|(?<=view\s)(\w+)', msg["M"])
-    epoch_atxs[m[4][0]].append(m)
+    # m = re.findall(r'(?<=\b:\s)(\w+)|(?<=view\s)(\w+)', msg["M"])
+    epoch_atxs[msg["layer_id"]].append(msg)
     # print("got atx ", msg["M"], " len of epoch %s is %s" % (m[4][0], len(epoch_atxs[m[4][0]])))
 
 

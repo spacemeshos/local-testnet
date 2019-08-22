@@ -16,6 +16,7 @@ import tools
 BOOTSTRAP_PORT = 7513
 ORACLE_SERVER_PORT = 3030
 POET_SERVER_PORT = 50002
+EVENTS_PORT = 56565
 
 NETWORK_NAME = "spacemesh"
 NETWORK_SUBNET = '192.168.0.0/8'
@@ -54,20 +55,22 @@ def create_bootstrap(coinbase ,network_name, bootstrap_ip, poet_ip):
     tools.update_dict(params.bootstrap_params,
                       **{"genesis-time": GENESIS_TIME.isoformat('T', 'seconds'),
                          "coinbase": coinbase,
-                         "poet-server": '{0}:{1}'.format(poet_ip, POET_SERVER_PORT)})
+                         "poet-server": '{0}:{1}'.format(poet_ip, POET_SERVER_PORT),
+                         "events-url": 'tcp://0.0.0.0:{0}'.format(EVENTS_PORT)})
 
     host_cfg = advclient.create_host_config(
         log_config=LogConfig(type=LogConfig.types.FLUENTD, config={'tag': 'docker.{{.ID}}'}),
-        port_bindings={9090: 9090, 9091: 9091},
+        port_bindings={9090: 9090, 9091: 9091, EVENTS_PORT: EVENTS_PORT},
         binds={os.path.abspath(GENESIS_ACCOUNTS): {
                     'bind': params.client_params["genesis-conf"],
                     'mode': 'rw'}})
+    print("bootstrap params:", tools.dict_to_args(params.bootstrap_params))
     bts = advclient.create_container(node_image,
                                      name="bootstrap",
                                      host_config=host_cfg,
                                      detach=True,
                                      networking_config=networking_config,
-                                     ports=[9090, 9091],
+                                     ports=[9090, 9091, EVENTS_PORT],
                                      command=tools.dict_to_args(params.bootstrap_params))
     advclient.start(bts['Id'])
     return client.containers.get(bts['Id'])
