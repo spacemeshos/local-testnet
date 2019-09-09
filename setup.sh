@@ -1,8 +1,8 @@
 #! /bin/sh -x
-
+STARTDIR=$PWD
 GITHUB=git://github.com
 SPACEMESHOS=$GITHUB/spacemeshos
-GO_GITHUB=~/go/src/github.com/spacemeshos
+GO_GITHUB=$PWD/src/spacemeshos
 
 
 git clone $SPACEMESHOS/go-spacemesh.git $GO_GITHUB/go-spacemesh
@@ -20,6 +20,6 @@ cd $GO_GITHUB/poet
 make dockerbuild-go || echo "building poet failed"
 
 cd $GO_GITHUB/CLIWallet
-go get && go build || echo "building wallet failed"
+make dockerbuild-go || echo "building wallet failed"
 
-
+cd $STARTDIR
