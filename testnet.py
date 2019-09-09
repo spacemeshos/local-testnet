@@ -23,6 +23,8 @@ NETWORK_SUBNET = '192.168.0.0/24'
 NETWORK_GATEWAY = '192.168.0.254'
 POET_IP = "192.168.0.20"
 BOOTSTRAP_IP = "192.168.0.21"
+FLUENT_IP = "192.168.0.19"
+
 
 GENESIS_TIME = pytz.utc.localize(datetime.utcnow() + timedelta(seconds=60))
 
@@ -211,6 +213,17 @@ try:
     # tools.cleanUp(client.containers.list())
     create_network(NETWORK_NAME, NETWORK_SUBNET, NETWORK_GATEWAY)
     fluentd = load_fluentd(NETWORK_NAME)
+    i = 0
+    for i in range(10):
+        if fluentd.status == "running":
+            print("fluent running")
+            break
+        print(fluentd.status)
+        time.sleep(1)
+        fluentd.reload()
+    if i == 9:
+        raise Exception('timeout wating for fluentd')
+
     poet = create_poet(NETWORK_NAME, POET_IP, BOOTSTRAP_IP)
     bootstrap = create_bootstrap(params.bootstrap_coinbase, NETWORK_NAME, BOOTSTRAP_IP, POET_IP)
     print("Waiting for node to boot up")
