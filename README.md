@@ -18,7 +18,6 @@ alt="IMAGE ALT TEXT HERE" width="560" height="315" /></a></div>
 ## Prerequisites
 - OS X or Linux. Windows 10 Pro support is being tested.
 - [git](https://git-scm.com/)
-- [go lang v1.11+](https://golang.org/)
 - [python3](https://www.python.org/downloads/)
 - [virtualenv + pip](https://docs.python.org/3/library/venv.html)
 - Docker. Please read this guide for [Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04). For OS X download and install Docker Desktop from https://hub.docker.com/editions/community/docker-ce-desktop-mac
@@ -30,7 +29,6 @@ alt="IMAGE ALT TEXT HERE" width="560" height="315" /></a></div>
 - Run the following from the terminal:
 ```
 brew install git
-brew install go
 brew install python3
 brew install docker
 sudo easy_install pip
@@ -88,8 +86,18 @@ cd $GOPATH/src/github.com/spacemeshos/CLIWallet
 
 2. Run the wallet
 ```
+docker run -t cli_wallet:master
+```
+
+OR
+
+*NOTE*: only if you have `go` installed.
+you can compile CLIWallet using `go build`, and just run it:
+```
 ./CLIWallet
 ```
+
+
 3. You should see a list of accounts. Choose one. e.g. enter `anton`
 4. Enter `account`  to view Anton's account balance
 5. Enter `transfer coins` to transfer coin to another account and follow the on-screen instructions
