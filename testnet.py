@@ -106,7 +106,7 @@ def create_nodes(clients, boot_ip, bootID, poet_ip, network_name):
         # client.networks.get(network_name).connect(node)
         containers.append({"cont": node})
         # idxes[node.name] = i
-        print(tools.bcolors.OKYELLOW + "Client created " + node.name + " connect wallet to 127.0.0.1:" + str(baseport) + " to access this node" + tools.bcolors.ENDC)
+        print(tools.bcolors.OKYELLOW + "Client created " + node.name + " connect wallet to json: 127.0.0.1:" + str(jsonbaseport) + "/gRPC 127.0.0.1:" + str(grpcbaseport) + " to access this node" + tools.bcolors.ENDC)
         jsonbaseport += 1
         grpcbaseport +=1
     print("Finished creating clients")
