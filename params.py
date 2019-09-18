@@ -9,7 +9,6 @@ bootstrap_params = {
     "test-mode": "",
     "grpc-server": "",
     "json-server": "",
-    "start-mining": "",
     "eligibility-confidence-param": '5',
     "eligibility-epoch-offset": '0',
     "genesis-active-size": '5',
@@ -18,6 +17,7 @@ bootstrap_params = {
 
 client_params = {
     **bootstrap_params,
+    "start-mining": "",
     "bootstrap": ""
 }
 
