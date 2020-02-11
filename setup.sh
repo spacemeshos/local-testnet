@@ -13,13 +13,13 @@ mkdir Logs
 
 echo "building node"
 cd $GO_GITHUB/go-spacemesh
-make dockerbuild-go || echo "building spacemsh node failed"
+make dockerbuild-go || echo "docker-build go-spacemesh failed"
 
 echo "building poet"
 cd $GO_GITHUB/poet
-make dockerbuild-go || echo "building poet failed"
+make dockerbuild-go || echo "docker-build poet failed"
 
 cd $GO_GITHUB/CLIWallet
-make dockerbuild-go || echo "building wallet failed"
+make build || echo "build wallet failed"
 
 cd $STARTDIR

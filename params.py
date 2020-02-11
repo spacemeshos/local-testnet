@@ -12,7 +12,8 @@ bootstrap_params = {
     "eligibility-confidence-param": '5',
     "eligibility-epoch-offset": '0',
     "genesis-active-size": '5',
-    "genesis-conf": "/tmp/genesis.json"
+    "genesis-conf": "/tmp/genesis.json",
+    "executable-path": "/bin/go-spacemesh"
 }
 
 client_params = {
@@ -24,6 +25,8 @@ client_params = {
 poet_params = {
     "rpclisten": "0.0.0.0:50002",
     "restlisten": "0.0.0.0:80",
+    "initialduration": "10s",
+    "duration": "10s"
 }
 
 genesis_accounts = {
