@@ -99,9 +99,8 @@ def parse_reward(msg):
 
 
 def post_proof(msg):
-    m = re.findall(r'(?<=\b:\s)(\w+)', msg["M"])
     id = re.split(r'\.', msg["N"])[0]
-    print(bcolors.ORANGE + "Commitment finished for node: %s size: %s (bytes) 💾⏰💪" % (id, m[2]) + bcolors.ENDC)
+    print(bcolors.ORANGE + "PoST commitment finished for node: %s size: %s (bytes) 💾⏰💪" % (id, msg["space"]) + bcolors.ENDC)
 
 
 # node added event
@@ -119,4 +118,4 @@ events = {"I've created a block in layer": block_created,
           "GRPC SubmitTransaction to address": parse_transaction_recv,
           "reward applied for account": parse_rewards,
           "fees reward:": parse_reward,
-          "finished PoST initialization": post_proof}
+          "PoST initialization completed": post_proof}
