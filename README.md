@@ -80,19 +80,15 @@ The testnet logs are available in the `Logs` directory.
 
 ### Executing Transactions
 
-1. Open a new Terminal window and navigate to the `CLIWallet` directory in your go `src` directory:
+1. Open a new Terminal window and run the wallet:
 
 ```
-cd $GOPATH/src/github.com/spacemeshos/CLIWallet
+(cd ./src/spacemeshos/CLIWallet && ./cli_wallet)
 ```
 
-2. Run the wallet
-```
-./CLIWallet
-```
-3. You should see a list of accounts. Choose one. e.g. enter `anton`
-4. Enter `account`  to view Anton's account balance
-5. Enter `transfer coins` to transfer coin to another account and follow the on-screen instructions
+2. You should see a list of accounts. Choose one. e.g. enter `anton`
+3. Enter `account`  to view Anton's account balance
+4. Enter `transfer coins` to transfer coin to another account and follow the on-screen instructions
 
 ## Working with the Localnet
 - Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).

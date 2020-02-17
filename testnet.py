@@ -15,7 +15,7 @@ import tools
 
 BOOTSTRAP_PORT = 7513
 ORACLE_SERVER_PORT = 3030
-POET_SERVER_PORT = 50002
+POET_SERVER_PORT = 80
 EVENTS_PORT = 56565
 
 NETWORK_NAME = "spacemesh"
@@ -39,7 +39,8 @@ def create_poet(network_name, poet_ip, bootstrap_ip):
     host_cfg = advclient.create_host_config(
         log_config=LogConfig(type=LogConfig.types.FLUENTD, config={'tag': 'docker.poet_{{.ID}}'}))
     tools.update_dict(params.poet_params,
-                      **{"nodeaddr": '{0}:{1}'.format(bootstrap_ip, '9091')})
+                      **{"gateway": '{0}:{1}'.format(bootstrap_ip, '9091')})
+    print("poet params:", tools.dict_to_args(params.poet_params))
     p = advclient.create_container(poet_image,
                                    host_config=host_cfg,
                                    detach=True,
@@ -86,8 +87,8 @@ def create_nodes(clients, boot_ip, bootID, poet_ip, network_name):
                          "genesis-time": GENESIS_TIME.isoformat('T', 'seconds')})
 
     print("running clients with args: " + tools.dict_to_args(params.client_params))
-    jsonbaseport = 9190
-    grpcbaseport = 9080
+    jsonbaseport = 9191
+    grpcbaseport = 9081
     for name, pubkey in clients.items():
         tools.update_dict(params.client_params,
                           **{"coinbase": pubkey})
@@ -226,7 +227,6 @@ try:
     if i == 9:
         raise Exception('timeout wating for fluentd')
 
-    poet = create_poet(NETWORK_NAME, POET_IP, BOOTSTRAP_IP)
     bootstrap = create_bootstrap(params.bootstrap_coinbase, NETWORK_NAME, BOOTSTRAP_IP, POET_IP)
     print("Waiting for node to boot up")
     #tools.tail(fluentd)
@@ -244,6 +244,8 @@ try:
 
     bootID = tools.getPublicKey(fluentd)
     print("Bootnode is at - " + bootstrap.name + ": " + bootIP + ":7513/" + bootID)
+
+    poet = create_poet(NETWORK_NAME, POET_IP, bootIP)
 
     create_nodes(params.genesis_accounts, bootIP, bootID, POET_IP, NETWORK_NAME)
     print("Started " + str(netsize) + " more instances booting from bootnode")
