@@ -86,9 +86,9 @@ The testnet logs are available in the `Logs` directory.
 (cd ./src/spacemeshos/CLIWallet && ./cli_wallet)
 ```
 
-2. You should see a list of accounts. Choose one. e.g. enter `anton`
-3. Enter `account`  to view Anton's account balance
-4. Enter `transfer coins` to transfer coin to another account and follow the on-screen instructions
+2. Enter `set` to view the list of accounts. Choose one. e.g. enter `anton`
+3. Enter `info` to view Anton's account balance
+4. Enter `tx` to transfer coin to another account and follow the on-screen instructions
 
 ## Working with the Localnet
 - Please follow the steps in our [localnet guide](https://testnet.spacemesh.io/#/local).
