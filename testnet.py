@@ -18,13 +18,14 @@ ORACLE_SERVER_PORT = 3030
 POET_SERVER_PORT = 80
 EVENTS_PORT = 56565
 
-NETWORK_NAME = "spacemesh"
-NETWORK_SUBNET = '192.168.0.0/24'
-NETWORK_GATEWAY = '192.168.0.254'
-POET_IP = "192.168.0.20"
-BOOTSTRAP_IP = "192.168.0.21"
-FLUENT_IP = "192.168.0.19"
+NETWORK_PREFIX = os.getenv("SMESH_NETWORK_PREFIX","192.168.103")
 
+NETWORK_NAME = "spacemesh"
+NETWORK_SUBNET = NETWORK_PREFIX+'.0/24'
+NETWORK_GATEWAY = NETWORK_PREFIX+'.254'
+POET_IP = NETWORK_PREFIX+".20"
+BOOTSTRAP_IP = NETWORK_PREFIX+".21"
+FLUENT_IP = NETWORK_PREFIX+".19"
 
 GENESIS_TIME = pytz.utc.localize(datetime.utcnow() + timedelta(seconds=60))
 
@@ -120,7 +121,7 @@ def load_fluentd(network_name):
                                network=network_name,
                                volumes={
                                    os.path.abspath('test.conf'): {'bind': '/fluentd/etc/test.conf', 'mode': 'rw'},
-                                   os.path.abspath('logs'): {'bind': '/tmp/logs', 'mode': 'rw'}},
+                                   os.path.abspath('Logs'): {'bind': '/tmp/logs', 'mode': 'rw'}},
                                environment={"FLUENTD_CONF": "test.conf"})
     return fd
 
