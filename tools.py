@@ -67,7 +67,7 @@ def getExternalIP(advclient, cont):
     nets = advclient.inspect_container(cont.name)['NetworkSettings']['Networks']
     for net in nets:
         ip = nets[net]["IPAddress"]
-        if ip is not "":
+        if ip != "":
             print(ip)
             break
     return ip
