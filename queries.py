@@ -15,9 +15,9 @@ epoch_atxs = defaultdict(list)
 
 
 def block_created(msg):
-    id = re.split(r'\.', msg["N"])[0]
-    m = re.findall(r'\d+', msg["M"])
-    layer = m[0]
+    id = msg["node_id"]
+    layer = msg["layer_id"]
+    m = msg["M"]
     # print(id + " created a block")
     # blocks - list of all blocks, layers - map of blocks per layer
     if id in node2blocks:
@@ -45,17 +45,18 @@ def released_tick(msg):
 
 
 def print_layer_stats(layer):
-    l = str(layer - 1)
+    l = layer - 1
+
     total_blocks = sum([len(node2blocks[x]["layers"][l]) for x in layer_miners[l]])
     print(bcolors.HEADER + "Layer %s ended, %s miners created %s blocks" % (layer - 1, len(layer_miners[l]), total_blocks) + bcolors.ENDC)
     if layer % layers_per_epoch == 0:
         print(bcolors.OKBLUE + "An epoch has finished, atxs published in this epoch: %s" %
-              len(epoch_atxs[str(int(layer/layers_per_epoch) -1)]) + bcolors.ENDC)
+              len(epoch_atxs[int(layer/layers_per_epoch) -1]) + bcolors.ENDC)
 
 
 def parse_atx(msg):
     # based on log: atx published! id: %v, prevATXID: %v, posATXID: %v, layer: %v, published in epoch: %v, active set: %v miner: %v view %v
-    nid = re.split(r'\.', msg["N"][0])
+    nid = msg["node_id"]
     # m = re.findall(r'(?<=\b:\s)(\w+)|(?<=view\s)(\w+)', msg["M"])
     epoch_atxs[msg["layer_id"]].append(msg)
     # print("got atx ", msg["M"], " len of epoch %s is %s" % (m[4][0], len(epoch_atxs[m[4][0]])))
@@ -110,7 +111,7 @@ def post_proof(msg):
 # new layer event
 # consensus process started?
 # pbase advanced?
-events = {"I've created a block in layer": block_created,
+events = {"block created": block_created,
           "release tick": released_tick,
           "App started": app_started,
           "atx published": parse_atx,
