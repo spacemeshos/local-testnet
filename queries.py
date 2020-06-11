@@ -63,18 +63,17 @@ def parse_atx(msg):
 
 
 def parse_transactions(msg):
-    # based on log transaction processed, s_account: %s d_account: %s, amount: %v shmekels tx nonce: %v, gas limit: %v gas price: %v
-    m = re.findall(r'(?<=\b:\s)(\w+)', msg["M"])
-    tx_id = (m[0], m[1], m[3])
-    # print(tx_id)
-    transactions[tx_id].append(m)
-    if len(transactions[tx_id]) == num_of_instances:
-        print(bcolors.OKGREEN + "Confirmed tx: orig: %s dest: %s amount %s nonce: %s" % (m[0], m[1], m[2], m[3]) + bcolors.ENDC)
+    m = re.findall(r'(?<=\b:\s)(\w+)', msg["transaction"])
+    tx_id = m[0]
+    transactions[tx_id] = transactions.get(tx_id,0) + 1
+    if transactions[tx_id] == num_of_instances:
+        del transactions[tx_id]
+        print(bcolors.OKGREEN + "Tx confirmed id: %s orig: %s dest: %s amount: %s nonce: %s" % (m[0], m[1], m[2], m[3], m[4]) + bcolors.ENDC)
 
 
 def parse_transaction_recv(msg):
     m = re.findall(r'(?<=\b:\s)(\w+)', msg["M"])
-    print(bcolors.OKYELLOW + "Tx received by node, dst %s amount %s" % (m[0], m[2]) + bcolors.ENDC)
+    print(bcolors.OKYELLOW + "Tx received by node, dst: %s amount: %s" % (m[0], m[2]) + bcolors.ENDC)
 
 
 def app_started(msg):
