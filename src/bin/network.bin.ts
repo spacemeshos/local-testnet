@@ -39,7 +39,7 @@ commander
     .option(
         '--go-sm-image <string>',
         'Docker image of go spacemesh build',
-        'go-spacemesh:v0.1.22'
+        'spacemeshos/go-spacemesh:v0.1.23'
     )
     .option(
         '--poet-image <string>',
