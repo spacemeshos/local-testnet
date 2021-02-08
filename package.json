@@ -39,7 +39,7 @@
     "semantic-release": "semantic-release"
   },
   "bin": {
-    "spacemesh-local-testnet": "./src/bin/network.bin.js"
+    "spacemesh-local-testnet": "./src/bin/network.bin.ts"
   },
   "repository": {
     "type": "git",
