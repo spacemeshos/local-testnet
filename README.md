@@ -57,3 +57,12 @@ spacemesh-local-testnet create --go-sm-image=spacemesh:local
 ## Executing Transactions using CLI Wallet
 
 Using CLI wallet you can import cli-wallet.json file and use the account to create token transfer transactions. The account is pre-filled in the genesis configuration.
+
+## Update NPM (Devs Only)
+
+Run the following command locally to publish new version to npm
+
+```
+npm run build
+cd dist && npm publish
+```
