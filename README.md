@@ -21,7 +21,7 @@ The local testnet is 100% built from open source code from the Spacemesh github 
 Install the CLI locally using the following command
 
 ```
-npm -g spacemesh-local-testnet
+npm install -g spacemesh-local-testnet
 ```
 
 ## Running
