@@ -29,9 +29,9 @@
     "commit": "git-cz",
     "format:check": "prettier --list-different '{src,__mocks__,bin}/**/*.js'",
     "format:write": "prettier --write '{src,__mocks__,bin}/**/*.js'",
-    "start:help": "ts-node src/bin/network.bin.ts -h",
-    "start:create": "ts-node  src/bin/network.bin.ts create",
-    "start:delete": "ts-node  src/bin/network.bin.ts delete",
+    "start:help": "ts-node bin/network.bin.ts -h",
+    "start:create": "ts-node  bin/network.bin.ts create",
+    "start:delete": "ts-node  bin/network.bin.ts delete",
     "test": "jest",
     "bump-version": "rjp package.json version $VERSION",
     "test:coverage": "jest --coverage",
@@ -39,7 +39,7 @@
     "semantic-release": "semantic-release"
   },
   "bin": {
-    "spacemesh-local-testnet": "./src/bin/network.bin.js"
+    "spacemesh-local-testnet": "./dist/src/bin/network.bin.js"
   },
   "repository": {
     "type": "git",
@@ -77,5 +77,9 @@
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "typescript": "^3.6.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/spacemeshos/local-testnet/issues"
+  },
+  "homepage": "https://github.com/spacemeshos/local-testnet#readme"
 }
