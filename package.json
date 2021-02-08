@@ -1,6 +1,6 @@
 {
   "name": "spacemesh-local-testnet",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI tool to start a spacemesh network locally",
   "main": "index.js",
   "husky": {
