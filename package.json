@@ -25,7 +25,7 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy-files",
     "commit": "git-cz",
     "format:check": "prettier --list-different '{src,__mocks__,bin}/**/*.js'",
     "format:write": "prettier --write '{src,__mocks__,bin}/**/*.js'",
@@ -34,7 +34,8 @@
     "start:delete": "ts-node  ./src/bin/network.bin.ts delete",
     "bump-version": "rjp package.json version $VERSION",
     "test:coverage": "jest --coverage",
-    "report:coverage": "npm run test:coverage && codecov"
+    "report:coverage": "npm run test:coverage && codecov",
+    "copy-files": "copyfiles ./src/elk/**/**/**/* ./dist"
   },
   "bin": {
     "spacemesh-local-testnet": "./src/bin/network.bin.js"
@@ -48,6 +49,7 @@
   "dependencies": {
     "boxen": "^2.1.0",
     "commander": "^7.0.0",
+    "copyfiles": "^2.4.1",
     "docker-compose": "^0.23.6",
     "is-valid-path": "^0.1.1",
     "jsonfile": "^5.0.0",
