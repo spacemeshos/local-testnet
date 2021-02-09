@@ -13,6 +13,7 @@ This repo contains the CLI for running a 10 node Spacemesh testnet locally on on
 - OS X or Linux or Windows
 - Docker
 - NPM
+- Docker Compose
 
 ## Installing CLI
 
