@@ -38,7 +38,7 @@ And to delete the network run the below command:
 spacemesh-local-testnet delete
 ```
 
-You can enter `spacemesh-local-testnet —-help` to see the available options. 
+You can enter `spacemesh-local-testnet --help` to see the available options. 
 
 ## Create Network using Local Go Spacemesh Build
 
