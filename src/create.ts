@@ -1,6 +1,11 @@
 import chalk from 'chalk';
 import boxen from 'boxen';
-import { getDockerClient, getContainerIP, getMinerPublicKey } from './utils';
+import {
+  getDockerClient,
+  getContainerIP,
+  getMinerPublicKey,
+  pullImage
+} from './utils';
 import moment from 'moment';
 import isValidPath from 'is-valid-path';
 import fs from 'fs';
@@ -68,13 +73,7 @@ export default async command => {
         console.log(chalk.bold.yellow(`Poet Image: ${poetImage} not found`));
         try {
           console.log(chalk.bold.yellow(`Pulling Poet Image: ${poetImage}`));
-          await docker.image.create(
-            {},
-            {
-              fromImage: poetImage.split(':')[0],
-              tag: poetImage.split(':')[1]
-            }
-          );
+          await pullImage(poetImage);
           await sleep(5000);
           console.log(chalk.bold.green(`Pulled Poet Image: ${poetImage}`));
         } catch (e) {
@@ -100,13 +99,7 @@ export default async command => {
           console.log(
             chalk.bold.yellow(`Pulling Go-spacemesh Image: ${smImage}`)
           );
-          await docker.image.create(
-            {},
-            {
-              fromImage: smImage.split(':')[0],
-              tag: smImage.split(':')[1]
-            }
-          );
+          await pullImage(smImage);
           await sleep(5000);
           console.log(
             chalk.bold.green(`Pulled Go-spacemesh Image: ${smImage}`)
