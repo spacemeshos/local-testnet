@@ -207,7 +207,7 @@ export default async command => {
       await sleep(12000);
       const url = `spacemesh://${await getMinerPublicKey(
         `/miner${miner}`
-      )}@${await getContainerIP(`/miner${miner}`)}:500${miner}`;
+      )}@${await getContainerIP(`/miner${miner}`)}:${5000 + miner}`;
       minerURLs.push(url);
       console.log(chalk.bold.green(`Started Miner${miner}: ${url}`));
     };
