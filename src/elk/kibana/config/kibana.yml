@@ -9,5 +9,5 @@ monitoring.ui.container.elasticsearch.enabled: true
 
 ## X-Pack security credentials
 #
-elasticsearch.username: spacemeshos
-elasticsearch.password: spacemeshos
+elasticsearch.username: elastic
+elasticsearch.password: changeme
