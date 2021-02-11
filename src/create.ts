@@ -35,8 +35,45 @@ export default async command => {
         Config: { 'syslog-address': 'tcp://localhost:9000' }
       };
 
+      console.log(chalk.bold.blue('Waiting for Kibana to be ready'));
+      for (;;) {
+        let res = null;
+
+        try {
+          res = await fetch(
+            'http://localhost:5601/api/saved_objects/index-pattern/*?overwrite=true',
+            {
+              method: 'post',
+              body: JSON.stringify({
+                attributes: { title: '*', timeFieldName: '@timestamp' }
+              }),
+              headers: {
+                'Content-Type': 'application/json',
+                'kbn-xsrf': 'reporting',
+                Authorization: 'Basic ZWxhc3RpYzpzcGFjZW1lc2g='
+              },
+              redirect: 'follow'
+            }
+          ).then(res => res.text());
+        } catch (e) {
+          console.log('Error: ', e.message.toString());
+          if (!e.message.toString().includes('socket hang up')) {
+            throw e;
+          } else {
+            res = 'Kibana server is not ready yet';
+          }
+        }
+
+        if (res === 'Kibana server is not ready yet') {
+          await sleep(5000);
+        } else {
+          console.log(chalk.bold.blue('Kibana is ready'));
+          break;
+        }
+      }
+
       console.log(
-        chalk.bold.blue('Started ELK. Kibana URL: http://localhost:5601')
+        chalk.bold.green('Started ELK. Kibana URL: http://localhost:5601')
       );
     }
 
@@ -389,6 +426,22 @@ export default async command => {
       headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json());
     console.log(chalk.bold.green(`Poet Activated`));
+
+    // Delete Index Pattern
+    // var myHeaders = new Headers();
+    // myHeaders.append("kbn-xsrf", "reporting");
+    // myHeaders.append("Authorization", "Basic ZWxhc3RpYzpzcGFjZW1lc2g=");
+
+    // var requestOptions = {
+    //   method: 'DELETE',
+    //   headers: myHeaders,
+    //   redirect: 'follow'
+    // };
+
+    // fetch("http://localhost:5601/api/saved_objects/index-pattern/*", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
 
     console.log(
       boxen('Network Started', {
