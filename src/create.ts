@@ -56,8 +56,10 @@ export default async command => {
             }
           ).then(res => res.text());
         } catch (e) {
-          console.log('Error: ', e.message.toString());
-          if (!e.message.toString().includes('socket hang up')) {
+          if (
+            !e.message.toString().includes('socket hang up') &&
+            !e.message.toString().includes('read ECONNRESET')
+          ) {
             throw e;
           } else {
             res = 'Kibana server is not ready yet';
