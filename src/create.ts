@@ -177,6 +177,24 @@ export default async command => {
       config.main['layers-per-epoch'] = 30;
     }
 
+    if (config.hare) {
+      config.hare['hare-committee-size'] = parseInt(
+        ((parseInt(command.miners) / 100) * 60 - 1).toString()
+      ).toString();
+      config.hare['hare-max-adversaries'] = parseInt(
+        (parseInt(config.hare['hare-committee-size']) / 2 - 1).toString()
+      ).toString();
+    } else {
+      config.hare = {};
+
+      config.hare['hare-committee-size'] = parseInt(
+        ((parseInt(command.miners) / 100) * 60 - 1).toString()
+      ).toString();
+      config.hare['hare-max-adversaries'] = parseInt(
+        (parseInt(config.hare['hare-committee-size']) / 2 - 1).toString()
+      ).toString();
+    }
+
     if (!fs.existsSync(command.dataDir)) {
       fs.mkdirSync(command.dataDir);
     }
