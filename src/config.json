@@ -7,13 +7,13 @@
     "eligibility-epoch-offset": "0"
   },
   "hare": {
-    "hare-exp-leaders": "5",
-    "hare-limit-concurrent": "5",
-    "hare-limit-iterations": "10",
-    "hare-round-duration-sec": "30", 
-    "hare-wakeup-delta": "30",
-    "hare-committee-size": "6",
-    "hare-max-adversaries": "2"
+    "hare-committee-size": 30,
+    "hare-max-adversaries": 14,
+    "hare-round-duration-sec": 30,
+    "hare-wakeup-delta": 30,
+    "hare-exp-leaders": 5,
+    "hare-limit-iterations": 10,
+    "hare-limit-concurrent": 5
   },
   "logging": {
     "app": "info",
@@ -63,7 +63,7 @@
     "swarm": {
         "bucketsize": 20,
         "alpha": 3,
-        "randcon": 1
+        "randcon": 8
     },
     "network-id": 20
   },
