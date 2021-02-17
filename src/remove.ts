@@ -17,7 +17,7 @@ export default async () => {
     await down({ cwd: `${path.join(__dirname)}/elk`, log: true });
 
     const docker = await getDockerClient();
-    const containers = await docker.container.list();
+    const containers = await docker.container.list({ all: true });
 
     const promises = [];
 
