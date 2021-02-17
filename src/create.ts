@@ -56,8 +56,10 @@ export default async command => {
             }
           ).then(res => res.text());
         } catch (e) {
-          console.log('Error: ', e.message.toString());
-          if (!e.message.toString().includes('socket hang up')) {
+          if (
+            !e.message.toString().includes('socket hang up') &&
+            !e.message.toString().includes('read ECONNRESET')
+          ) {
             throw e;
           } else {
             res = 'Kibana server is not ready yet';
@@ -175,6 +177,24 @@ export default async command => {
 
     if (!config.main['layers-per-epoch']) {
       config.main['layers-per-epoch'] = 30;
+    }
+
+    if (config.hare) {
+      config.hare['hare-committee-size'] = parseInt(
+        ((parseInt(command.miners) / 100) * 60 - 1).toString()
+      ).toString();
+      config.hare['hare-max-adversaries'] = parseInt(
+        (parseInt(config.hare['hare-committee-size']) / 2 - 1).toString()
+      ).toString();
+    } else {
+      config.hare = {};
+
+      config.hare['hare-committee-size'] = parseInt(
+        ((parseInt(command.miners) / 100) * 60 - 1).toString()
+      ).toString();
+      config.hare['hare-max-adversaries'] = parseInt(
+        (parseInt(config.hare['hare-committee-size']) / 2 - 1).toString()
+      ).toString();
     }
 
     if (!fs.existsSync(command.dataDir)) {
