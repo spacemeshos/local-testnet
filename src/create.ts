@@ -295,7 +295,10 @@ export default async command => {
         `--genesis-conf=/share/genesis.json`
       ];
 
-      if (!command.removeOldApiPort) {
+      if (
+        command.removeOldApiPort === false ||
+        command.removeOldApiPort === 'false'
+      ) {
         Cmd.push('--grpc-server');
         Cmd.push(`--grpc-port-new=${8000 + port}`);
       }
@@ -357,7 +360,10 @@ export default async command => {
         `--genesis-conf=/share/genesis.json`
       ];
 
-      if (!command.removeOldApiPort) {
+      if (
+        command.removeOldApiPort === false ||
+        command.removeOldApiPort === 'false'
+      ) {
         Cmd.push('--grpc-server');
         Cmd.push(`--grpc-port-new=${8000 + port}`);
       }
@@ -425,7 +431,10 @@ export default async command => {
         `--genesis-conf=/share/genesis.json`
       ];
 
-      if (!command.removeOldApiPort) {
+      if (
+        command.removeOldApiPort === false ||
+        command.removeOldApiPort === 'false'
+      ) {
         Cmd.push('--grpc-server');
         Cmd.push(`--grpc-port-new=${8000 + port}`);
       }

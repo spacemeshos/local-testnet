@@ -1,6 +1,6 @@
 {
   "name": "spacemesh-local-testnet",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "CLI tool to start a spacemesh network locally",
   "main": "index.js",
   "husky": {
@@ -30,7 +30,7 @@
     "format:check": "prettier --list-different '{src,__mocks__,bin}/**/*.js'",
     "format:write": "prettier --write '{src,__mocks__,bin}/**/*.js'",
     "start:help": "ts-node bin/network.bin.ts -h",
-    "start:create": "ts-node  ./src/bin/network.bin.ts create --remove-old-api-port=true",
+    "start:create": "ts-node  ./src/bin/network.bin.ts create",
     "start:delete": "ts-node  ./src/bin/network.bin.ts delete",
     "bump-version": "rjp package.json version $VERSION",
     "test:coverage": "jest --coverage",
