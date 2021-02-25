@@ -448,7 +448,6 @@ export default async command => {
           Entrypoint: '/bin/go-spacemesh',
           Cmd: [
             '--config=/share/config.json',
-            '--grpc-server',
             '--test-mode',
             `--tcp-port=${5000 + port}`,
             `--coinbase=${command.coinbase}`,
@@ -456,7 +455,6 @@ export default async command => {
             `--poet-server=${poetURL}`,
             `--grpc-port=${6000 + port}`,
             `--json-port=${7000 + port}`,
-            `--grpc-port-new=${8000 + port}`,
             `--start-mining`,
             '--bootstrap',
             `--bootnodes=${bootnodes}`,
