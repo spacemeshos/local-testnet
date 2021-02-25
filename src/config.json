@@ -1,6 +1,6 @@
 {
   "api": {
-    "grpc": "node,mesh,globalstate,transaction,smesher"
+    "grpc": "gateway,node,mesh,globalstate,transaction,smesher"
   },
   "hare-eligibility": {
     "eligibility-confidence-param": "25",

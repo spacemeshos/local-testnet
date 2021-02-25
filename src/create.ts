@@ -282,6 +282,24 @@ export default async command => {
         LogConfig.Config['tag'] = `miner${port}`;
       }
 
+      const Cmd = [
+        '--config=/share/config.json',
+        '--test-mode',
+        `--tcp-port=${5000 + port}`,
+        `--coinbase=${command.coinbase}`,
+        `--acquire-port=0`,
+        `--poet-server=${poetURL}`,
+        `--grpc-port=${6000 + port}`,
+        `--json-port=${7000 + port}`,
+        `--start-mining`,
+        `--genesis-conf=/share/genesis.json`
+      ];
+
+      if (!command.removeOldApiPort) {
+        Cmd.push('--grpc-server');
+        Cmd.push(`--grpc-port-new=${8000 + port}`);
+      }
+
       await docker.container
         .create({
           Hostname: `spacemesh.miner${port}`,
@@ -289,20 +307,7 @@ export default async command => {
           name: `miner${port}`,
           Image: smImage,
           Entrypoint: '/bin/go-spacemesh',
-          Cmd: [
-            '--config=/share/config.json',
-            '--grpc-server',
-            '--test-mode',
-            `--tcp-port=${5000 + port}`,
-            `--coinbase=${command.coinbase}`,
-            `--acquire-port=0`,
-            `--poet-server=${poetURL}`,
-            `--grpc-port=${6000 + port}`,
-            `--json-port=${7000 + port}`,
-            `--grpc-port-new=${8000 + port}`,
-            `--start-mining`,
-            `--genesis-conf=/share/genesis.json`
-          ],
+          Cmd,
           ExposedPorts: exposedPorts,
           HostConfig: {
             Binds: [`${command.dataDir}:/share`],
@@ -336,6 +341,27 @@ export default async command => {
         LogConfig.Config['tag'] = `miner${port}`;
       }
 
+      const Cmd = [
+        '--config=/share/config.json',
+        '--test-mode',
+        `--tcp-port=${5000 + port}`,
+        `--coinbase=${command.coinbase}`,
+        `--acquire-port=0`,
+        `--poet-server=${poetURL}`,
+        `--grpc-port=${6000 + port}`,
+        `--json-port=${7000 + port}`,
+        `--start-mining`,
+        '--bootstrap',
+        `--bootnodes=${minerURLs[0]}`,
+        '--acquire-port=0',
+        `--genesis-conf=/share/genesis.json`
+      ];
+
+      if (!command.removeOldApiPort) {
+        Cmd.push('--grpc-server');
+        Cmd.push(`--grpc-port-new=${8000 + port}`);
+      }
+
       await docker.container
         .create({
           Hostname: `spacemesh.miner${port}`,
@@ -343,23 +369,7 @@ export default async command => {
           name: `miner${port}`,
           Image: smImage,
           Entrypoint: '/bin/go-spacemesh',
-          Cmd: [
-            '--config=/share/config.json',
-            '--grpc-server',
-            '--test-mode',
-            `--tcp-port=${5000 + port}`,
-            `--coinbase=${command.coinbase}`,
-            `--acquire-port=0`,
-            `--poet-server=${poetURL}`,
-            `--grpc-port=${6000 + port}`,
-            `--json-port=${7000 + port}`,
-            `--grpc-port-new=${8000 + port}`,
-            `--start-mining`,
-            '--bootstrap',
-            `--bootnodes=${minerURLs[0]}`,
-            '--acquire-port=0',
-            `--genesis-conf=/share/genesis.json`
-          ],
+          Cmd,
           ExposedPorts: exposedPorts,
           HostConfig: {
             Binds: [`${command.dataDir}:/share`],
@@ -397,6 +407,27 @@ export default async command => {
 
       if (LogConfig) {
         LogConfig.Config['tag'] = `miner${port}`;
+      }
+
+      const Cmd = [
+        '--config=/share/config.json',
+        '--test-mode',
+        `--tcp-port=${5000 + port}`,
+        `--coinbase=${command.coinbase}`,
+        `--acquire-port=0`,
+        `--poet-server=${poetURL}`,
+        `--grpc-port=${6000 + port}`,
+        `--json-port=${7000 + port}`,
+        `--start-mining`,
+        '--bootstrap',
+        `--bootnodes=${bootnodes}`,
+        '--acquire-port=0',
+        `--genesis-conf=/share/genesis.json`
+      ];
+
+      if (!command.removeOldApiPort) {
+        Cmd.push('--grpc-server');
+        Cmd.push(`--grpc-port-new=${8000 + port}`);
       }
 
       await docker.container

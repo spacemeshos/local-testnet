@@ -47,6 +47,11 @@ commander
     'Docker image of PoET build',
     'spacemeshos/poet:73488d6'
   )
+  .option(
+    '--remove-old-api-port <boolean>',
+    'Removes --grpc-server and --grpc-port-new ports when running miners',
+    false
+  )
   .action(async (operation, options, command) => {
     if (operation === 'create') {
       await create(command);
