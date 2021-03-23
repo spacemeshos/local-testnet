@@ -112,6 +112,7 @@ export function getNewWallet() {
   const identity = EthCrypto.createIdentity();
   return {
     privateKey: identity.privateKey.substring(2),
-    publicKey: EthCrypto.publicKey.compress(identity.publicKey)
+    publicKey: EthCrypto.publicKey.compress(identity.publicKey),
+    address: EthCrypto.publicKey.toAddress(identity.publicKey)
   };
 }

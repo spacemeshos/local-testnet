@@ -262,15 +262,15 @@ export default async command => {
       minerURLs.push(url);
       console.log(
         chalk.bold.green(
-          `Started Miner${miner}: ${url}. Coinbase -> Private key: ${
+          `Started Node${miner}: ${url}. Rewards Account -> Private key: ${
             wallet.privateKey
-          } and Public Key: ${wallet.publicKey}`
+          }, Public Key: ${wallet.publicKey} and Address: ${wallet.address}`
         )
       );
     };
 
     //start bootstrap
-    console.log(chalk.bold.blue(`Starting Miner1 (Type: Bootstrap)`));
+    console.log(chalk.bold.blue(`Starting Node1 (Type: Bootstrap)`));
     let port = 1;
     await (async () => {
       const exposedPorts = {};
@@ -337,7 +337,7 @@ export default async command => {
 
     for (let count = 1; count <= parseInt(command.bootnodes); count++) {
       port++;
-      console.log(chalk.bold.blue(`Starting Miner${port} (Type: Bootnode)`));
+      console.log(chalk.bold.blue(`Starting Node${port} (Type: Bootnode)`));
       const exposedPorts = {};
       exposedPorts[`${5000 + port}/tcp`] = {};
       exposedPorts[`${6000 + port}/tcp`] = {};
@@ -411,7 +411,7 @@ export default async command => {
       count++
     ) {
       port++;
-      console.log(chalk.bold.blue(`Starting Miner${port}`));
+      console.log(chalk.bold.blue(`Starting Node${port}`));
       const exposedPorts = {};
       exposedPorts[`${5000 + port}/tcp`] = {};
       exposedPorts[`${6000 + port}/tcp`] = {};
