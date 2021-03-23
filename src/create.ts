@@ -291,6 +291,7 @@ export default async command => {
         `--poet-server=${poetURL}`,
         `--grpc-port=${6000 + port}`,
         `--json-port=${7000 + port}`,
+        `--json-server=true`,
         `--start-mining`,
         `--genesis-conf=/share/genesis.json`
       ];
@@ -353,6 +354,7 @@ export default async command => {
         `--poet-server=${poetURL}`,
         `--grpc-port=${6000 + port}`,
         `--json-port=${7000 + port}`,
+        `--json-server=true`,
         `--start-mining`,
         '--bootstrap',
         `--bootnodes=${minerURLs[0]}`,
@@ -424,6 +426,7 @@ export default async command => {
         `--poet-server=${poetURL}`,
         `--grpc-port=${6000 + port}`,
         `--json-port=${7000 + port}`,
+        `--json-server=true`,
         `--start-mining`,
         '--bootstrap',
         `--bootnodes=${bootnodes}`,
