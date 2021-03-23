@@ -4,7 +4,8 @@ import {
   getDockerClient,
   getContainerIP,
   getMinerPublicKey,
-  pullImage
+  pullImage,
+  getNewWallet
 } from './utils';
 import moment from 'moment';
 import isValidPath from 'is-valid-path';
@@ -253,13 +254,19 @@ export default async command => {
 
     const minerURLs = [];
 
-    const addMinerConnectionDetails = async miner => {
+    const addMinerConnectionDetails = async (miner, wallet) => {
       await sleep(12000);
       const url = `spacemesh://${await getMinerPublicKey(
-        `/miner${miner}`
-      )}@${await getContainerIP(`/miner${miner}`)}:${5000 + miner}`;
+        `/node${miner}`
+      )}@${await getContainerIP(`/node${miner}`)}:${5000 + miner}`;
       minerURLs.push(url);
-      console.log(chalk.bold.green(`Started Miner${miner}: ${url}`));
+      console.log(
+        chalk.bold.green(
+          `Started Miner${miner}: ${url}. Coinbase -> Private key: ${
+            wallet.privateKey
+          } and Public Key: ${wallet.publicKey}`
+        )
+      );
     };
 
     //start bootstrap
@@ -279,14 +286,16 @@ export default async command => {
       portBindings[`${8000 + port}/tcp`] = [{ HostPort: `${8000 + port}` }];
 
       if (LogConfig) {
-        LogConfig.Config['tag'] = `miner${port}`;
+        LogConfig.Config['tag'] = `node${port}`;
       }
+
+      const wallet = getNewWallet();
 
       const Cmd = [
         '--config=/share/config.json',
         '--test-mode',
         `--tcp-port=${5000 + port}`,
-        `--coinbase=${command.coinbase}`,
+        `--coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
         `--grpc-port=${6000 + port}`,
@@ -306,9 +315,9 @@ export default async command => {
 
       await docker.container
         .create({
-          Hostname: `spacemesh.miner${port}`,
-          Domainname: `spacemesh.miner${port}`,
-          name: `miner${port}`,
+          Hostname: `spacemesh.node${port}`,
+          Domainname: `spacemesh.node${port}`,
+          name: `node${port}`,
           Image: smImage,
           Entrypoint: '/bin/go-spacemesh',
           Cmd,
@@ -321,7 +330,7 @@ export default async command => {
         })
         .then(container => container.start());
 
-      await addMinerConnectionDetails(port);
+      await addMinerConnectionDetails(port, wallet);
     })();
 
     let promises = [];
@@ -342,14 +351,16 @@ export default async command => {
       portBindings[`${8000 + port}/tcp`] = [{ HostPort: `${8000 + port}` }];
 
       if (LogConfig) {
-        LogConfig.Config['tag'] = `miner${port}`;
+        LogConfig.Config['tag'] = `node${port}`;
       }
+
+      const wallet = getNewWallet();
 
       const Cmd = [
         '--config=/share/config.json',
         '--test-mode',
         `--tcp-port=${5000 + port}`,
-        `--coinbase=${command.coinbase}`,
+        `--coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
         `--grpc-port=${6000 + port}`,
@@ -372,9 +383,9 @@ export default async command => {
 
       await docker.container
         .create({
-          Hostname: `spacemesh.miner${port}`,
-          Domainname: `spacemesh.miner${port}`,
-          name: `miner${port}`,
+          Hostname: `spacemesh.node${port}`,
+          Domainname: `spacemesh.node${port}`,
+          name: `node${port}`,
           Image: smImage,
           Entrypoint: '/bin/go-spacemesh',
           Cmd,
@@ -387,7 +398,7 @@ export default async command => {
         })
         .then(container => container.start());
 
-      promises.push(addMinerConnectionDetails(port));
+      promises.push(addMinerConnectionDetails(port, wallet));
     }
 
     await Promise.all(promises);
@@ -414,14 +425,16 @@ export default async command => {
       portBindings[`${8000 + port}/tcp`] = [{ HostPort: `${8000 + port}` }];
 
       if (LogConfig) {
-        LogConfig.Config['tag'] = `miner${port}`;
+        LogConfig.Config['tag'] = `node${port}`;
       }
+
+      const wallet = getNewWallet();
 
       const Cmd = [
         '--config=/share/config.json',
         '--test-mode',
         `--tcp-port=${5000 + port}`,
-        `--coinbase=${command.coinbase}`,
+        `--coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
         `--grpc-port=${6000 + port}`,
@@ -444,26 +457,12 @@ export default async command => {
 
       await docker.container
         .create({
-          Hostname: `spacemesh.miner${port}`,
-          Domainname: `spacemesh.miner${port}`,
-          name: `miner${port}`,
+          Hostname: `spacemesh.node${port}`,
+          Domainname: `spacemesh.node${port}`,
+          name: `node${port}`,
           Image: smImage,
           Entrypoint: '/bin/go-spacemesh',
-          Cmd: [
-            '--config=/share/config.json',
-            '--test-mode',
-            `--tcp-port=${5000 + port}`,
-            `--coinbase=${command.coinbase}`,
-            `--acquire-port=0`,
-            `--poet-server=${poetURL}`,
-            `--grpc-port=${6000 + port}`,
-            `--json-port=${7000 + port}`,
-            `--start-mining`,
-            '--bootstrap',
-            `--bootnodes=${bootnodes}`,
-            '--acquire-port=0',
-            `--genesis-conf=/share/genesis.json`
-          ],
+          Cmd,
           ExposedPorts: exposedPorts,
           HostConfig: {
             Binds: [`${command.dataDir}:/share`],
@@ -473,7 +472,7 @@ export default async command => {
         })
         .then(container => container.start());
 
-      promises.push(addMinerConnectionDetails(port));
+      promises.push(addMinerConnectionDetails(port, wallet));
     }
 
     await Promise.all(promises);
@@ -482,7 +481,7 @@ export default async command => {
     await fetch('http://localhost:5000/v1/start', {
       method: 'post',
       body: JSON.stringify({
-        gatewayAddresses: [`${await getContainerIP(`/miner2`)}:6002`]
+        gatewayAddresses: [`${await getContainerIP(`/node2`)}:6002`]
       }),
       headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json());

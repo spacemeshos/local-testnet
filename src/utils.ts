@@ -1,6 +1,7 @@
 import { Docker } from 'node-docker-api';
 import sleep from 'sleep-promise';
 const docker = new Docker({ socketPath: '/var/run/docker.sock' });
+import EthCrypto from 'eth-crypto';
 
 export async function getDockerClient() {
   try {
@@ -105,4 +106,12 @@ export async function pullImage(name) {
     .then(() => docker.image.get(name).status())
     .then(image => image.history())
     .then(events => console.log(events));
+}
+
+export function getNewWallet() {
+  const identity = EthCrypto.createIdentity();
+  return {
+    privateKey: identity.privateKey.substring(2),
+    publicKey: EthCrypto.publicKey.compress(identity.publicKey)
+  };
 }

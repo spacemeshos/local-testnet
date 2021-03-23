@@ -40,17 +40,17 @@ commander
   .option(
     '--go-sm-image <string>',
     'Docker image of go spacemesh build',
-    'spacemeshos/go-spacemesh:v0.1.23'
+    'spacemeshos/go-spacemesh:develop'
   )
   .option(
     '--poet-image <string>',
     'Docker image of PoET build',
-    'spacemeshos/poet:73488d6'
+    'spacemeshos/poet:develop'
   )
   .option(
     '--remove-old-api-port <boolean>',
     'Removes --grpc-server and --grpc-port-new ports when running miners',
-    false
+    true
   )
   .action(async (operation, options, command) => {
     if (operation === 'create') {

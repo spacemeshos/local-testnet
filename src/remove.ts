@@ -23,7 +23,7 @@ export default async () => {
 
     containers.forEach(container => {
       const data = JSON.parse(JSON.stringify(container.data));
-      if (data.Names[0].includes('miner') || data.Names[0].includes('poet')) {
+      if (data.Names[0].includes('node') || data.Names[0].includes('poet')) {
         promises.push(container.delete({ force: true }));
       }
     });
