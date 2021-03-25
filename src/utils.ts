@@ -110,9 +110,10 @@ export async function pullImage(name) {
 
 export function getNewWallet() {
   const identity = EthCrypto.createIdentity();
+  const pk = EthCrypto.publicKey.compress(identity.publicKey);
   return {
     privateKey: identity.privateKey.substring(2),
-    publicKey: EthCrypto.publicKey.compress(identity.publicKey),
-    address: EthCrypto.publicKey.toAddress(identity.publicKey)
+    publicKey: pk,
+    address: `0x${pk.substring(pk.length - 40)}`
   };
 }
