@@ -50,7 +50,7 @@ commander
   .option(
     '--remove-old-api-port <boolean>',
     'Removes --grpc-server and --grpc-port-new ports when running miners',
-    true
+    false
   )
   .action(async (operation, options, command) => {
     if (operation === 'create') {
