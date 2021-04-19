@@ -52,6 +52,7 @@ commander
     'Removes --grpc-server and --grpc-port-new ports when running miners',
     false
   )
+  .option('--log-level <string>', 'go-spacemesh log level', 'info')
   .action(async (operation, options, command) => {
     if (operation === 'create') {
       await create(command);

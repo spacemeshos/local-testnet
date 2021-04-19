@@ -156,6 +156,12 @@ export default async command => {
       }
     }
 
+    if (config.logging) {
+      Object.keys(config.logging).forEach(
+        key => (config.logging[key] = command.logLevel)
+      );
+    }
+
     const genesisTime = moment()
       .add('60', 'seconds')
       .toISOString();
