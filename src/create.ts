@@ -304,19 +304,18 @@ export default async command => {
         `--coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
-        `--grpc-port=${6000 + port}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
         `--start-mining`,
         `--genesis-conf=/share/genesis.json`
       ];
 
-      if (
-        command.removeOldApiPort === false ||
-        command.removeOldApiPort === 'false'
-      ) {
+      if (command.oldApiExists === true || command.oldApiExists === 'true') {
+        Cmd.push(`--grpc-port=${8000 + port}`);
         Cmd.push('--grpc-server');
-        Cmd.push(`--grpc-port-new=${8000 + port}`);
+        Cmd.push(`--grpc-port-new=${6000 + port}`);
+      } else {
+        Cmd.push(`--grpc-port=${6000 + port}`);
       }
 
       await docker.container
@@ -369,7 +368,6 @@ export default async command => {
         `--coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
-        `--grpc-port=${6000 + port}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
         `--start-mining`,
@@ -379,12 +377,12 @@ export default async command => {
         `--genesis-conf=/share/genesis.json`
       ];
 
-      if (
-        command.removeOldApiPort === false ||
-        command.removeOldApiPort === 'false'
-      ) {
+      if (command.oldApiExists === true || command.oldApiExists === 'true') {
+        Cmd.push(`--grpc-port=${8000 + port}`);
         Cmd.push('--grpc-server');
-        Cmd.push(`--grpc-port-new=${8000 + port}`);
+        Cmd.push(`--grpc-port-new=${6000 + port}`);
+      } else {
+        Cmd.push(`--grpc-port=${6000 + port}`);
       }
 
       await docker.container
@@ -443,7 +441,6 @@ export default async command => {
         `--coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
-        `--grpc-port=${6000 + port}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
         `--start-mining`,
@@ -453,12 +450,12 @@ export default async command => {
         `--genesis-conf=/share/genesis.json`
       ];
 
-      if (
-        command.removeOldApiPort === false ||
-        command.removeOldApiPort === 'false'
-      ) {
+      if (command.oldApiExists === true || command.oldApiExists === 'true') {
+        Cmd.push(`--grpc-port=${8000 + port}`);
         Cmd.push('--grpc-server');
-        Cmd.push(`--grpc-port-new=${8000 + port}`);
+        Cmd.push(`--grpc-port-new=${6000 + port}`);
+      } else {
+        Cmd.push(`--grpc-port=${6000 + port}`);
       }
 
       await docker.container
