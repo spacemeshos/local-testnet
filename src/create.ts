@@ -481,10 +481,16 @@ export default async command => {
     await Promise.all(promises);
 
     console.log(chalk.bold.blue(`Activating Poet`));
+
+    let gatewayPort = '6002';
+    if (command.oldApiExists === true || command.oldApiExists === 'true') {
+      gatewayPort = '8002';
+    }
+
     await fetch('http://localhost:5000/v1/start', {
       method: 'post',
       body: JSON.stringify({
-        gatewayAddresses: [`${await getContainerIP(`/node2`)}:6002`]
+        gatewayAddresses: [`${await getContainerIP(`/node2`)}:${gatewayPort}`]
       }),
       headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json());
