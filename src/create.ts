@@ -37,7 +37,7 @@ export default async command => {
       };
 
       console.log(chalk.bold.blue('Waiting for Kibana to be ready'));
-      for (;;) {
+      for (; ;) {
         let res = null;
 
         try {
@@ -99,12 +99,10 @@ export default async command => {
     let poetImage = command.poetImage.split(':');
     let smImage = command.goSmImage.split(':');
 
-    poetImage = `${poetImage[0]}:${
-      poetImage[1] === undefined ? 'latest' : poetImage[1]
-    }`;
-    smImage = `${smImage[0]}:${
-      smImage[1] === undefined ? 'latest' : smImage[1]
-    }`;
+    poetImage = `${poetImage[0]}:${poetImage[1] === undefined ? 'latest' : poetImage[1]
+      }`;
+    smImage = `${smImage[0]}:${smImage[1] === undefined ? 'latest' : smImage[1]
+      }`;
 
     try {
       await docker.image.get(poetImage).status();
@@ -212,10 +210,6 @@ export default async command => {
       `${command.dataDir}/config.json`,
       JSON.stringify(config, null, 2)
     );
-    fs.writeFileSync(
-      `${command.dataDir}/genesis.json`,
-      JSON.stringify(genesis, null, 2)
-    );
 
     const duration =
       parseInt(config.main['layer-duration-sec']) *
@@ -268,8 +262,7 @@ export default async command => {
       minerURLs.push(url);
       console.log(
         chalk.bold.green(
-          `Started Node${miner}: ${url}. Rewards Account -> Private key: ${
-            wallet.privateKey
+          `Started Node${miner}: ${url}. Rewards Account -> Private key: ${wallet.privateKey
           }, Public Key: ${wallet.publicKey} and Address: ${wallet.address}`
         )
       );
@@ -306,8 +299,7 @@ export default async command => {
         `--poet-server=${poetURL}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
-        `--start-mining`,
-        `--genesis-conf=/share/genesis.json`
+        `--start-mining`
       ];
 
       if (command.oldApiExists === true || command.oldApiExists === 'true') {
@@ -373,8 +365,7 @@ export default async command => {
         `--start-mining`,
         '--bootstrap',
         `--bootnodes=${minerURLs[0]}`,
-        '--acquire-port=0',
-        `--genesis-conf=/share/genesis.json`
+        '--acquire-port=0'
       ];
 
       if (command.oldApiExists === true || command.oldApiExists === 'true') {
@@ -446,8 +437,7 @@ export default async command => {
         `--start-mining`,
         '--bootstrap',
         `--bootnodes=${bootnodes}`,
-        '--acquire-port=0',
-        `--genesis-conf=/share/genesis.json`
+        '--acquire-port=0'
       ];
 
       if (command.oldApiExists === true || command.oldApiExists === 'true') {

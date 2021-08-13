@@ -10,7 +10,7 @@
     "hare-exp-leaders": "5",
     "hare-limit-concurrent": "5",
     "hare-limit-iterations": "10",
-    "hare-round-duration-sec": "30", 
+    "hare-round-duration-sec": "30",
     "hare-wakeup-delta": "30",
     "hare-committee-size": "6",
     "hare-max-adversaries": "2"
@@ -61,9 +61,9 @@
     "buffer-size": 10000,
     "msg-size-limit": 0,
     "swarm": {
-        "bucketsize": 20,
-        "alpha": 3,
-        "randcon": 1
+      "bucketsize": 20,
+      "alpha": 3,
+      "randcon": 1
     },
     "network-id": 20
   },
@@ -76,5 +76,13 @@
     "ntp-queries": 5,
     "default-timeout-latency": "10s",
     "refresh-ntp-interval": "30m"
+  },
+  "genesis": {
+    "accounts": {
+      "0xff083c9a22e05d3459b03f3dbed61c7ad6e0a209": 100000000000000000,
+      "0xb20c3a31f973231e01bf2d6b5c00a22cc13b5c63": 100000000000000000,
+      "0x8868600d2835019249a0f756f754d5a5ab17ebf0": 100000000000000000,
+      "0x9f120e40e330affe6aa27d5bda49ac0960df7d6f": 100000000000000000
+    }
   }
 }

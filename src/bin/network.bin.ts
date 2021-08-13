@@ -5,7 +5,6 @@ import create from '../create';
 import remove from '../remove';
 const homedir = require('os').homedir();
 import config from '../config.json';
-import genesis from '../genesis.json';
 
 commander
   .version(packgeJSON.version)
@@ -14,11 +13,6 @@ commander
     '-c --config <string>',
     'Load configuration from file',
     JSON.stringify(config)
-  )
-  .option(
-    '--genesis-conf <string>',
-    'Load genesis configuration from file',
-    JSON.stringify(genesis)
   )
   .option('-m --miners <string>', `Number of nodes to setup`, '10')
   .option(
