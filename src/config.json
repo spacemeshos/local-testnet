@@ -7,13 +7,13 @@
     "eligibility-epoch-offset": "0"
   },
   "hare": {
-    "hare-exp-leaders": "5",
+    "hare-exp-leaders": "10",
     "hare-limit-concurrent": "5",
     "hare-limit-iterations": "10",
     "hare-round-duration-sec": "30",
     "hare-wakeup-delta": "30",
-    "hare-committee-size": "6",
-    "hare-max-adversaries": "2"
+    "hare-committee-size": "800",
+    "hare-max-adversaries": "399"
   },
   "logging": {
     "app": "info",
@@ -40,15 +40,16 @@
     "trtl": "info"
   },
   "main": {
-    "atxs-per-block": "25",
-    "block-cache-size": "20",
-    "hdist": "10",
-    "layer-average-size": "30",
-    "layer-duration-sec": "200",
-    "layers-per-epoch": "6",
-    "sync-interval": "10",
-    "sync-request-timeout": "60000",
-    "sync-validation-delta": "30"
+    "space-to-commit": 1048576,
+    "layer-duration-sec": 200,
+    "layer-average-size": 30,
+    "layers-per-epoch": 6,
+    "block-cache-size": 20,
+    "sync-request-timeout": 60000,
+    "sync-interval": 10,
+    "sync-validation-delta": 30,
+    "hdist": 10,
+    "atxs-per-block": 25
   },
   "p2p": {
     "dial-timeout": "1m",
@@ -63,19 +64,45 @@
     "swarm": {
       "bucketsize": 20,
       "alpha": 3,
-      "randcon": 1
+      "randcon": 8
     },
     "network-id": 20
   },
   "post": {
-    "post-space": 1048576,
-    "post-labels": 10
+    "post-bits-per-label": 8,
+    "post-labels-per-unit": 1024,
+    "post-min-numunits": 2,
+    "post-max-numunits": 4,
+    "post-k1": 2000,
+    "post-k2": 1800
   },
   "time": {
     "max-allowed-time-drift": "10s",
     "ntp-queries": 5,
     "default-timeout-latency": "10s",
     "refresh-ntp-interval": "30m"
+  },
+  "tortoise-beacon": {
+    "tortoise-beacon-first-voting-round-duration-ms": 60000,
+    "tortoise-beacon-grace-period-duration-ms": 10000,
+    "tortoise-beacon-kappa": 400000,
+    "tortoise-beacon-proposal-duration-ms": 30000,
+    "tortoise-beacon-q": "1/3",
+    "tortoise-beacon-rounds-number": 6,
+    "tortoise-beacon-theta": 0.00004,
+    "tortoise-beacon-votes-limit": 100,
+    "tortoise-beacon-voting-round-duration-ms": 50000,
+    "tortoise-beacon-wait-after-epoch-start-ms": 1000,
+    "tortoise-beacon-weak-coin-round-duration-ms": 1000
+  },
+  "smeshing": {
+    "smeshing-opts": {
+      "smeshing-opts-datadir": "/root/data/post",
+      "smeshing-opts-numunits": 2,
+      "smeshing-opts-numfiles": 1,
+      "smeshing-opts-provider": 1,
+      "smeshing-opts-throttle": true
+    }
   },
   "genesis": {
     "accounts": {

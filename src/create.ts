@@ -37,7 +37,7 @@ export default async command => {
       };
 
       console.log(chalk.bold.blue('Waiting for Kibana to be ready'));
-      for (; ;) {
+      for (;;) {
         let res = null;
 
         try {
@@ -88,21 +88,15 @@ export default async command => {
       config = JSON.parse(config);
     }
 
-    let genesis = command.genesisConf;
-    if (isValidPath(genesis)) {
-      genesis = fs.readFileSync(genesis).toString();
-      genesis = JSON.parse(genesis);
-    } else {
-      genesis = JSON.parse(genesis);
-    }
-
     let poetImage = command.poetImage.split(':');
     let smImage = command.goSmImage.split(':');
 
-    poetImage = `${poetImage[0]}:${poetImage[1] === undefined ? 'latest' : poetImage[1]
-      }`;
-    smImage = `${smImage[0]}:${smImage[1] === undefined ? 'latest' : smImage[1]
-      }`;
+    poetImage = `${poetImage[0]}:${
+      poetImage[1] === undefined ? 'latest' : poetImage[1]
+    }`;
+    smImage = `${smImage[0]}:${
+      smImage[1] === undefined ? 'latest' : smImage[1]
+    }`;
 
     try {
       await docker.image.get(poetImage).status();
@@ -164,43 +158,8 @@ export default async command => {
       .add('60', 'seconds')
       .toISOString();
 
-    if (!config.main) {
-      config.main = {
-        'genesis-time': genesisTime,
-        'layer-duration-sec': 30,
-        'layers-per-epoch': 3,
-        'genesis-active-size': command.miners
-      };
-    } else {
-      config.main['genesis-time'] = genesisTime;
-      config.main['genesis-active-size'] = command.miners;
-    }
-
-    if (!config.main['layer-duration-sec']) {
-      config.main['layer-duration-sec'] = 30;
-    }
-
-    if (!config.main['layers-per-epoch']) {
-      config.main['layers-per-epoch'] = 30;
-    }
-
-    if (config.hare) {
-      config.hare['hare-committee-size'] = parseInt(
-        ((parseInt(command.miners) / 100) * 60 - 1).toString()
-      ).toString();
-      config.hare['hare-max-adversaries'] = parseInt(
-        (parseInt(config.hare['hare-committee-size']) / 2 - 1).toString()
-      ).toString();
-    } else {
-      config.hare = {};
-
-      config.hare['hare-committee-size'] = parseInt(
-        ((parseInt(command.miners) / 100) * 60 - 1).toString()
-      ).toString();
-      config.hare['hare-max-adversaries'] = parseInt(
-        (parseInt(config.hare['hare-committee-size']) / 2 - 1).toString()
-      ).toString();
-    }
+    config.main['genesis-time'] = genesisTime;
+    config.main['genesis-active-size'] = command.miners;
 
     if (!fs.existsSync(command.dataDir)) {
       fs.mkdirSync(command.dataDir);
@@ -262,7 +221,8 @@ export default async command => {
       minerURLs.push(url);
       console.log(
         chalk.bold.green(
-          `Started Node${miner}: ${url}. Rewards Account -> Private key: ${wallet.privateKey
+          `Started Node${miner}: ${url}. Rewards Account -> Private key: ${
+            wallet.privateKey
           }, Public Key: ${wallet.publicKey} and Address: ${wallet.address}`
         )
       );
@@ -294,21 +254,14 @@ export default async command => {
         '--config=/share/config.json',
         '--test-mode',
         `--tcp-port=${5000 + port}`,
-        `--coinbase=${wallet.publicKey}`,
+        `--smeshing-coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
-        `--start-mining`
+        `--smeshing-start=true`,
+        `--grpc-port=${6000 + port}`
       ];
-
-      if (command.oldApiExists === true || command.oldApiExists === 'true') {
-        Cmd.push(`--grpc-port=${8000 + port}`);
-        Cmd.push('--grpc-server');
-        Cmd.push(`--grpc-port-new=${6000 + port}`);
-      } else {
-        Cmd.push(`--grpc-port=${6000 + port}`);
-      }
 
       await docker.container
         .create({
@@ -357,24 +310,17 @@ export default async command => {
         '--config=/share/config.json',
         '--test-mode',
         `--tcp-port=${5000 + port}`,
-        `--coinbase=${wallet.publicKey}`,
+        `--smeshing-coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
-        `--start-mining`,
+        `--smeshing-start`,
         '--bootstrap',
         `--bootnodes=${minerURLs[0]}`,
-        '--acquire-port=0'
+        '--acquire-port=0',
+        `--grpc-port=${6000 + port}`
       ];
-
-      if (command.oldApiExists === true || command.oldApiExists === 'true') {
-        Cmd.push(`--grpc-port=${8000 + port}`);
-        Cmd.push('--grpc-server');
-        Cmd.push(`--grpc-port-new=${6000 + port}`);
-      } else {
-        Cmd.push(`--grpc-port=${6000 + port}`);
-      }
 
       await docker.container
         .create({
@@ -429,24 +375,17 @@ export default async command => {
         '--config=/share/config.json',
         '--test-mode',
         `--tcp-port=${5000 + port}`,
-        `--coinbase=${wallet.publicKey}`,
+        `--smeshing-coinbase=${wallet.publicKey}`,
         `--acquire-port=0`,
         `--poet-server=${poetURL}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
-        `--start-mining`,
+        `--smeshing-start`,
         '--bootstrap',
         `--bootnodes=${bootnodes}`,
-        '--acquire-port=0'
+        '--acquire-port=0',
+        `--grpc-port=${6000 + port}`
       ];
-
-      if (command.oldApiExists === true || command.oldApiExists === 'true') {
-        Cmd.push(`--grpc-port=${8000 + port}`);
-        Cmd.push('--grpc-server');
-        Cmd.push(`--grpc-port-new=${6000 + port}`);
-      } else {
-        Cmd.push(`--grpc-port=${6000 + port}`);
-      }
 
       await docker.container
         .create({
@@ -472,18 +411,14 @@ export default async command => {
 
     console.log(chalk.bold.blue(`Activating Poet`));
 
-    let gatewayPort = '6002';
-    if (command.oldApiExists === true || command.oldApiExists === 'true') {
-      gatewayPort = '8002';
-    }
-
     await fetch('http://localhost:5000/v1/start', {
       method: 'post',
       body: JSON.stringify({
-        gatewayAddresses: [`${await getContainerIP(`/node2`)}:${gatewayPort}`]
+        gatewayAddresses: [`${await getContainerIP(`/node2`)}:6002`]
       }),
       headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json());
+
     console.log(chalk.bold.green(`Poet Activated`));
 
     // Delete Index Pattern
