@@ -34,12 +34,17 @@ commander
   .option(
     '--go-sm-image <string>',
     'Docker image of go spacemesh build',
-    'spacemeshos/go-spacemesh:develop'
+    'spacemeshos/go-spacemesh:v0.1.26'
   )
   .option(
     '--poet-image <string>',
     'Docker image of PoET build',
-    'spacemeshos/poet:develop'
+    'spacemeshos/poet:73488d6'
+  )
+  .option(
+    '--old-api-exists <boolean>',
+    'Adds --grpc-server and --grpc-port-new ports when running miners',
+    true
   )
   .option('--log-level <string>', 'go-spacemesh log level', 'info')
   .action(async (operation, options, command) => {
