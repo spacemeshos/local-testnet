@@ -70,11 +70,11 @@
   },
   "post": {
     "post-bits-per-label": 8,
-    "post-labels-per-unit": 1024,
+    "post-labels-per-unit": 32,
     "post-min-numunits": 2,
     "post-max-numunits": 4,
     "post-k1": 2000,
-    "post-k2": 1800
+    "post-k2": 4
   },
   "time": {
     "max-allowed-time-drift": "10s",
