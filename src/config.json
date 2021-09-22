@@ -67,8 +67,7 @@
       "alpha": 5,
       "randcon": 2
     },
-    "network-id": 20,
-    "local-network": true
+    "network-id": 20
   },
   "post": {
     "post-bits-per-label": 8,
