@@ -305,7 +305,7 @@ export default async command => {
     const bootnodes = minerURLs.join(',');
     for (
       let count = 1;
-      count <= parseInt(command.miners) - parseInt(command.bootnodes);
+      count <= parseInt(command.miners) - 1; // whe have one boostrap node
       count++
     ) {
       port++;
