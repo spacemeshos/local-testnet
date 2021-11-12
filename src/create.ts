@@ -155,7 +155,7 @@ export default async command => {
     }
 
     const genesisTime = moment()
-      .add('60', 'seconds')
+      .add('90', 'seconds')
       .toISOString();
 
     config.main['genesis-time'] = genesisTime;
@@ -170,12 +170,11 @@ export default async command => {
       JSON.stringify(config, null, 2)
     );
 
-    const duration =
-      parseInt(config.main['layer-duration-sec']) *
-      parseInt(config.main['layers-per-epoch']);
+    const duration = Math.floor(
+      parseInt(config.main['layer-duration-sec']) * parseInt(config.main['layers-per-epoch']) / 2 );
     fs.writeFileSync(
       `${command.dataDir}/config.conf`,
-      `duration = "${duration}s"\nn = "21"`,
+      `duration = "${duration}s"\nn = "15"`,
       { encoding: 'utf8', flag: 'w' }
     );
 
@@ -197,14 +196,17 @@ export default async command => {
           `--jsonlog`,
           `--configfile=/share/config.conf`
         ],
+        Labels: {
+          'kind' : 'spacemesh'
+        },
         ExposedPorts: {
           '5000/tcp': {}
         },
         HostConfig: {
           Binds: [`${command.dataDir}:/share`],
           PortBindings: { '5000/tcp': [{ HostPort: '5000' }] },
-          LogConfig
-        }
+          LogConfig,
+        },
       })
       .then(container => container.start());
 
@@ -276,79 +278,34 @@ export default async command => {
             Binds: [`${command.dataDir}:/share`],
             PortBindings: portBindings,
             LogConfig
-          }
+          },
+          Labels: {
+            'kind' : 'spacemesh'
+          },
         })
         .then(container => container.start());
 
       await addMinerConnectionDetails(port, wallet);
     })();
 
+    console.log(chalk.bold.blue(`Activating Poet`));
+
+    await fetch('http://localhost:5000/v1/start', {
+      method: 'post',
+      body: JSON.stringify({
+        gatewayAddresses: [`${await getContainerIP(`/node1`)}:6001`]
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json());
+
+    console.log(chalk.bold.green(`Poet Activated`));
+
     let promises = [];
 
-    for (let count = 1; count <= parseInt(command.bootnodes); count++) {
-      port++;
-      console.log(chalk.bold.blue(`Starting Node${port} (Type: Bootnode)`));
-      const exposedPorts = {};
-      exposedPorts[`${5000 + port}/tcp`] = {};
-      exposedPorts[`${6000 + port}/tcp`] = {};
-      exposedPorts[`${7000 + port}/tcp`] = {};
-      exposedPorts[`${8000 + port}/tcp`] = {};
-
-      const portBindings = {};
-      portBindings[`${5000 + port}/tcp`] = [{ HostPort: `${5000 + port}` }];
-      portBindings[`${6000 + port}/tcp`] = [{ HostPort: `${6000 + port}` }];
-      portBindings[`${7000 + port}/tcp`] = [{ HostPort: `${7000 + port}` }];
-      portBindings[`${8000 + port}/tcp`] = [{ HostPort: `${8000 + port}` }];
-
-      if (LogConfig) {
-        LogConfig.Config['tag'] = `node${port}`;
-      }
-
-      const wallet = getNewWallet();
-
-      const Cmd = [
-        '--config=/share/config.json',
-        '--test-mode',
-        `--tcp-port=${5000 + port}`,
-        `--smeshing-coinbase=${wallet.publicKey}`,
-        `--acquire-port=0`,
-        `--poet-server=${poetURL}`,
-        `--json-port=${7000 + port}`,
-        `--json-server=true`,
-        `--smeshing-start`,
-        '--bootstrap',
-        `--bootnodes=${minerURLs[0]}`,
-        '--acquire-port=0',
-        `--grpc-port=${6000 + port}`
-      ];
-
-      await docker.container
-        .create({
-          Hostname: `spacemesh.node${port}`,
-          Domainname: `spacemesh.node${port}`,
-          name: `node${port}`,
-          Image: smImage,
-          Entrypoint: '/bin/go-spacemesh',
-          Cmd,
-          ExposedPorts: exposedPorts,
-          HostConfig: {
-            Binds: [`${command.dataDir}:/share`],
-            PortBindings: portBindings,
-            LogConfig
-          }
-        })
-        .then(container => container.start());
-
-      promises.push(addMinerConnectionDetails(port, wallet));
-    }
-
-    await Promise.all(promises);
-
-    const bootnodes = minerURLs.slice(1).join(',');
-
+    const bootnodes = minerURLs.join(',');
     for (
       let count = 1;
-      count <= parseInt(command.miners) - parseInt(command.bootnodes) - 1;
+      count <= parseInt(command.miners) - 1; // whe have one boostrap node
       count++
     ) {
       port++;
@@ -400,7 +357,10 @@ export default async command => {
             Binds: [`${command.dataDir}:/share`],
             PortBindings: portBindings,
             LogConfig
-          }
+          },
+          Labels: {
+            'kind' : 'spacemesh'
+           },
         })
         .then(container => container.start());
 
@@ -408,18 +368,6 @@ export default async command => {
     }
 
     await Promise.all(promises);
-
-    console.log(chalk.bold.blue(`Activating Poet`));
-
-    await fetch('http://localhost:5000/v1/start', {
-      method: 'post',
-      body: JSON.stringify({
-        gatewayAddresses: [`${await getContainerIP(`/node2`)}:6002`]
-      }),
-      headers: { 'Content-Type': 'application/json' }
-    }).then(res => res.json());
-
-    console.log(chalk.bold.green(`Poet Activated`));
 
     // Delete Index Pattern
     // var myHeaders = new Headers();

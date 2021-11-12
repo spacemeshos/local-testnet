@@ -15,11 +15,6 @@ commander
     JSON.stringify(config)
   )
   .option('-m --miners <string>', `Number of nodes to setup`, '10')
-  .option(
-    '-b --bootnodes <string>',
-    `Number of bootnodes to setup. It should be <= miners - 1`,
-    '5'
-  )
   .option('--elk <boolean>', `Enable ELK to inspect logs`, false)
   .option(
     '-d --data-dir <string>',
