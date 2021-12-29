@@ -10,7 +10,7 @@
     "hare-exp-leaders-description": "3 (expected leaders per round) * 800 (committee) / 10 (count of nodes)",
     "hare-exp-leaders": "240",
     "hare-limit-concurrent": "5",
-    "hare-limit-iterations": "10",
+    "hare-limit-iterations": "5",
     "hare-round-duration-sec": "10",
     "hare-wakeup-delta": "20",
     "hare-committee-size": "800",
