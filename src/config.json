@@ -101,7 +101,7 @@
       "smeshing-opts-datadir": "/root/data/post",
       "smeshing-opts-numunits": 2,
       "smeshing-opts-numfiles": 1,
-      "smeshing-opts-provider": 0,
+      "smeshing-opts-provider": 1,
       "smeshing-opts-throttle": true
     }
   },
