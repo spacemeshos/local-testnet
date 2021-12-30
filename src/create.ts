@@ -224,7 +224,7 @@ export default async command => {
       //   `/node${miner}`
       // )}@${await getContainerIP(`/node${miner}`)}:${5000 + miner}`;
       const url = `/ip4/${await getContainerIP(`/node${miner}`)}/tcp/${5000 +
-        miner}/${await getMinerPublicKey(`/node${miner}`)}`;
+        miner}/p2p/${await getMinerPublicKey(`/node${miner}`)}`;
       minerURLs.push(url);
       console.log(
         chalk.bold.green(
@@ -339,9 +339,7 @@ export default async command => {
         `--json-port=${7000 + port}`,
         `--json-server=true`,
         `--smeshing-start`,
-        '--bootstrap',
         `--bootnodes=${bootnodes}`,
-        '--acquire-port=0',
         `--grpc-port=${6000 + port}`
       ];
 
