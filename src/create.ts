@@ -220,9 +220,6 @@ export default async command => {
 
     const addMinerConnectionDetails = async (miner, wallet) => {
       await sleep(12000);
-      // const url = `spacemesh://${await getMinerPublicKey(
-      //   `/node${miner}`
-      // )}@${await getContainerIP(`/node${miner}`)}:${5000 + miner}`;
       const url = `/ip4/${await getContainerIP(`/node${miner}`)}/tcp/${5000 +
         miner}/p2p/${await getMinerPublicKey(`/node${miner}`)}`;
       minerURLs.push(url);
