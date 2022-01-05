@@ -53,21 +53,12 @@
     "atxs-per-block": 25
   },
   "p2p": {
-    "dial-timeout": "1m",
-    "conn-keepalive": "48h",
-    "response-timeout": "60s",
-    "session-timeout": "15s",
-    "max-pending-connections": 100,
-    "outbound-target": 3,
-    "max-inbound": 32,
-    "buffer-size": 10000,
-    "msg-size-limit": 0,
-    "swarm": {
-      "bucketsize": 20,
-      "alpha": 5,
-      "randcon": 2
-    },
-    "network-id": 20
+    "network-id": 20,
+    "target-outbound": 5
+  },
+  "tortoise": {
+    "full-mode-verification-window": 10,
+    "verifying-mode-verification-window": 100
   },
   "post": {
     "post-bits-per-label": 8,
@@ -93,8 +84,8 @@
     "tortoise-beacon-theta": "1/25000",
     "tortoise-beacon-votes-limit": 20,
     "tortoise-beacon-voting-round-duration": "5s",
-    "tortoise-beacon-wait-after-epoch-start": "5s",
-    "tortoise-beacon-weak-coin-round-duration": "1s"
+    "tortoise-beacon-weak-coin-round-duration": "1s",
+    "tortoise-beacon-sync-num-blocks": "30"
   },
   "smeshing": {
     "smeshing-opts": {
