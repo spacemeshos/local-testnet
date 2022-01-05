@@ -71,21 +71,14 @@ export async function getMinerPublicKey(name) {
 
   for (;;) {
     try {
-      const networkId = (await executeCommand(container, [
-        'ls',
-        '/root/spacemesh'
-      ])).replace(/\D/g, '');
-      let path = `/root/spacemesh/${networkId.toString()}/p2p/nodes`;
-      let nodeId = await executeCommand(container, ['ls', path]);
-      nodeId = nodeId.replace('\n', '');
-      let removeChars = nodeId.length - 44;
-      nodeId = nodeId.substring(removeChars);
-      nodeId = nodeId.replace(',', '');
-      path = `${path}/${nodeId}/id.json`;
+      const networkId = (
+        await executeCommand(container, ['ls', '/root/spacemesh'])
+      ).replace(/\D/g, '');
+      let path = `/root/spacemesh/${networkId.toString()}/p2p/p2p.key`;
       let json = await executeCommand(container, ['cat', path]);
       json = json.substring(8);
       json = JSON.parse(json);
-      return json.pubKey;
+      return json.ID;
     } catch (e) {
       await sleep(2000);
     }

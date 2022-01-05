@@ -171,7 +171,10 @@ export default async command => {
     );
 
     const duration = Math.floor(
-      parseInt(config.main['layer-duration-sec']) * parseInt(config.main['layers-per-epoch']) / 2 );
+      (parseInt(config.main['layer-duration-sec']) *
+        parseInt(config.main['layers-per-epoch'])) /
+        2
+    );
     fs.writeFileSync(
       `${command.dataDir}/config.conf`,
       `duration = "${duration}s"\nn = "15"`,
@@ -197,7 +200,7 @@ export default async command => {
           `--configfile=/share/config.conf`
         ],
         Labels: {
-          'kind' : 'spacemesh'
+          kind: 'spacemesh'
         },
         ExposedPorts: {
           '5000/tcp': {}
@@ -205,8 +208,8 @@ export default async command => {
         HostConfig: {
           Binds: [`${command.dataDir}:/share`],
           PortBindings: { '5000/tcp': [{ HostPort: '5000' }] },
-          LogConfig,
-        },
+          LogConfig
+        }
       })
       .then(container => container.start());
 
@@ -217,15 +220,12 @@ export default async command => {
 
     const addMinerConnectionDetails = async (miner, wallet) => {
       await sleep(12000);
-      const url = `spacemesh://${await getMinerPublicKey(
-        `/node${miner}`
-      )}@${await getContainerIP(`/node${miner}`)}:${5000 + miner}`;
+      const url = `/ip4/${await getContainerIP(`/node${miner}`)}/tcp/${5000 +
+        miner}/p2p/${await getMinerPublicKey(`/node${miner}`)}`;
       minerURLs.push(url);
       console.log(
         chalk.bold.green(
-          `Started Node${miner}: ${url}. Rewards Account -> Private key: ${
-            wallet.privateKey
-          }, Public Key: ${wallet.publicKey} and Address: ${wallet.address}`
+          `Started Node${miner}: ${url}. Rewards Account -> Private key: ${wallet.privateKey}, Public Key: ${wallet.publicKey} and Address: ${wallet.address}`
         )
       );
     };
@@ -255,9 +255,8 @@ export default async command => {
       const Cmd = [
         '--config=/share/config.json',
         '--test-mode',
-        `--tcp-port=${5000 + port}`,
+        `--listen=/ip4/0.0.0.0/tcp/${5000 + port}`,
         `--smeshing-coinbase=${wallet.publicKey}`,
-        `--acquire-port=0`,
         `--poet-server=${poetURL}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
@@ -280,8 +279,8 @@ export default async command => {
             LogConfig
           },
           Labels: {
-            'kind' : 'spacemesh'
-          },
+            kind: 'spacemesh'
+          }
         })
         .then(container => container.start());
 
@@ -331,16 +330,13 @@ export default async command => {
       const Cmd = [
         '--config=/share/config.json',
         '--test-mode',
-        `--tcp-port=${5000 + port}`,
+        `--listen=/ip4/0.0.0.0/tcp/${5000 + port}`,
         `--smeshing-coinbase=${wallet.publicKey}`,
-        `--acquire-port=0`,
         `--poet-server=${poetURL}`,
         `--json-port=${7000 + port}`,
         `--json-server=true`,
         `--smeshing-start`,
-        '--bootstrap',
         `--bootnodes=${bootnodes}`,
-        '--acquire-port=0',
         `--grpc-port=${6000 + port}`
       ];
 
@@ -359,8 +355,8 @@ export default async command => {
             LogConfig
           },
           Labels: {
-            'kind' : 'spacemesh'
-           },
+            kind: 'spacemesh'
+          }
         })
         .then(container => container.start());
 
