@@ -1,10 +1,6 @@
-# README
-
-# A programmable Cryptocurrency
-
-![https://spacemesh.io/content/images/2019/05/black_logo_hp.png](https://spacemesh.io/content/images/2019/05/black_logo_hp.png)
-
 # Spacemesh Local Testnet (Localnet)
+
+## NOTE: this project is not actively maintained at present and is likely not functional.
 
 This repo contains the source code of the `spacemesh-local-testnet` npm pacakge. 
 This package enable developers to run a 10 node Spacemesh testnet locally on one computer. 
